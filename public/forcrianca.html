@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil da Criança — EntreMundos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght=0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="stylesheets/home.css">
+    <link rel="stylesheet" href="stylesheets/global.css">
+    <link rel="stylesheet" href="stylesheets/castro.css">
+    <style>
+        .step { display: none; }
+        .step.active { display: block; }
+        .hidden-flow { display: none !important; }
+    </style>
+</head>
+<body class="theme-coral bg-stone-50 text-stone-800 font-['Work_Sans']">
+
+<div class="cadastro-topbar flex justify-between items-center p-4 bg-white border-b border-stone-200">
+    <a href="Index.html" class="cadastro-logo text-2xl font-bold text-coral-500 font-['Fraunces']">Entre<em class="text-stone-600">Mundos</em></a>
+    <a href="dashboardFamilia.html" class="login-link text-stone-600 hover:text-coral-500 text-sm">Guardar e continuar depois</a>
+</div>
+
+<div class="simple-form-shell max-w-2xl mx-auto my-8 p-6 bg-white rounded-xl shadow-md">
+
+    <!-- PAINEL DO FORMULÁRIO -->
+    <div id="formPanel">
+        <p class="page-eyebrow text-xs uppercase tracking-wider text-coral-500 font-semibold mb-1">Perfil da criança</p>
+        <h1 class="text-3xl font-bold font-['Fraunces'] mb-2">Fale-nos sobre a criança</h1>
+        <p class="text-stone-600 mb-6">Estas informações ajudam a personalizar os recursos, os jogos e as recomendações de especialistas.</p>
+
+        <div class="wizard-progress h-2 bg-stone-100 rounded-full mb-8" id="progressBar">
+            <div id="progressFill" class="h-full bg-coral-500 rounded-full transition-all duration-300" style="width: 16%;"></div>
+        </div>
+
+        <form id="criancaForm" novalidate class="space-y-6">
+
+            <!-- PASSO 1: DADOS BÁSICOS & CONTACTOS -->
+            <div class="step active" data-step="1">
+                <h3 class="text-lg font-semibold mb-4 text-stone-700">Passo 1: Identificação Básica</h3>
+                <div class="field photo-upload flex items-center space-x-4 mb-4">
+                    <span class="photo-preview w-16 h-16 rounded-full bg-stone-100 flex items-center justify-center text-2xl" id="childFotoPreview">👶</span>
+                    <label class="upload-btn cursor-pointer bg-stone-100 border border-stone-300 px-4 py-2 rounded text-sm hover:bg-stone-200" for="childFoto">Adicionar fotografia (opcional)</label>
+                    <input type="file" id="childFoto" accept="image/*" class="hidden">
+                </div>
+                <div class="field mb-4">
+                    <label class="block text-sm font-medium mb-1" for="childNome">Nome *</label>
+                    <input type="text" id="childNome" class="w-full p-2 border border-stone-300 rounded focus:ring-2 focus:ring-coral-500 outline-none" required>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="field">
+                        <label class="block text-sm font-medium mb-1" for="childNasc">Data de nascimento *</label>
+                        <input type="date" id="childNasc" class="w-full p-2 border border-stone-300 rounded outline-none" required>
+                    </div>
+                    <div class="field">
+                        <label class="block text-sm font-medium mb-1" for="childIdade">Idade</label>
+                        <input type="number" id="childIdade" class="w-full p-2 border border-stone-300 rounded outline-none" min="0" max="25">
+                    </div>
+                </div>
+                <div class="field mb-4">
+                    <label class="block text-sm font-medium mb-2">Sexo</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="flex items-center space-x-2 border p-3 rounded cursor-pointer hover:bg-stone-50"><input type="radio" name="sexo" value="Feminino"> <span>Feminino</span></label>
+                        <label class="flex items-center space-x-2 border p-3 rounded cursor-pointer hover:bg-stone-50"><input type="radio" name="sexo" value="Masculino"> <span>Masculino</span></label>
+                    </div>
+                </div>
+                <hr class="my-6 border-stone-200" />
+                <div class="field mb-4">
+                    <label class="block text-sm font-medium mb-1" for="encarregadoNome">Nome do Encarregado de Educação Adicional (Opcional)</label>
+                    <input type="text" id="encarregadoNome" class="w-full p-2 border border-stone-300 rounded" placeholder="Ex: Mãe, Pai, Avó">
+                </div>
+                <div class="field">
+                    <label class="block text-sm font-medium mb-1" for="contactoEmergencia">Contacto Telefónico de Emergência *</label>
+                    <input 
+    type="tel" 
+    id="contactoEmergencia" 
+    class="w-full p-2 border border-stone-300 rounded" 
+    placeholder="Ex: 861234567" 
+    maxlength="9" 
+    pattern="^8[2-7][0-9]{7}$" 
+    inputmode="numeric" 
+    required>
+                </div>
+            </div>
+
+            <!-- PASSO 2: TRIAGEM DO DIAGNÓSTICO -->
+            <div class="step" data-step="2">
+                <h3 class="text-lg font-semibold mb-4 text-stone-700">Passo 2: Diagnóstico Clínico</h3>
+                <div class="field mb-6">
+                    <label class="block text-sm font-medium mb-3">A criança já foi avaliada por um profissional?</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-3 border p-3 rounded cursor-pointer hover:bg-stone-50">
+                            <input type="radio" name="diagnostico" value="Sim" class="diag-radio" required> 
+                            <span>Sim (Já possui diagnóstico fechado)</span>
+                        </label>
+                        <label class="flex items-center space-x-3 border p-3 rounded cursor-pointer hover:bg-stone-50">
+                            <input type="radio" name="diagnostico" value="Não" class="diag-radio"> 
+                            <span>Não (Não possui diagnóstico)</span>
+                        </label>
+                        <label class="flex items-center space-x-3 border p-3 rounded cursor-pointer hover:bg-stone-50">
+                            <input type="radio" name="diagnostico" value="Em avaliação" class="diag-radio"> 
+                            <span>Está em processo de avaliação clínica</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="clinicalLevelBox" class="field hidden-flow">
+                    <label class="block text-sm font-medium mb-3">O profissional de saúde informou o nível de suporte de autismo?</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center space-x-3 border p-3 rounded cursor-pointer hover:bg-stone-50">
+                            <input type="radio" name="conheceNivel" value="Sim" class="nivel-radio"> 
+                            <span>Sim, eu sei o nível de suporte</span>
+                        </label>
+                        <label class="flex items-center space-x-3 border p-3 rounded cursor-pointer hover:bg-stone-50">
+                            <input type="radio" name="conheceNivel" value="Não" class="nivel-radio"> 
+                            <span>Não sei / Não me lembro</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="exactLevelBox" class="field mt-4 hidden-flow">
+                    <label class="block text-sm font-medium mb-3">Qual é o nível de suporte indicado?</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <label class="flex flex-col items-center border p-3 rounded cursor-pointer hover:bg-stone-50 text-center">
+                            <input type="radio" name="nivelSuporte" value="Nível 1" class="mb-1"> 
+                            <span class="font-semibold text-sm">Nível 1</span>
+                            <span class="text-xs text-stone-500">Leve</span>
+                        </label>
+                        <label class="flex flex-col items-center border p-3 rounded cursor-pointer hover:bg-stone-50 text-center">
+                            <input type="radio" name="nivelSuporte" value="Nível 2" class="mb-1"> 
+                            <span class="font-semibold text-sm">Nível 2</span>
+                            <span class="text-xs text-stone-500">Moderado</span>
+                        </label>
+                        <label class="flex flex-col items-center border p-3 rounded cursor-pointer hover:bg-stone-50 text-center">
+                            <input type="radio" name="nivelSuporte" value="Nível 3" class="mb-1"> 
+                            <span class="font-semibold text-sm">Nível 3</span>
+                            <span class="text-xs text-stone-500">Severo/Elevado</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PASSO 3: AVALIAÇÃO COMPORTAMENTAL ADAPTATIVA -->
+            <div class="step" data-step="3">
+                <h3 class="text-lg font-semibold mb-2 text-stone-700">Passo 3: Questionário de Desenvolvimento</h3>
+                <p class="text-xs text-stone-500 mb-4">Responda com sinceridade. Estes dados guiam o nosso algoritmo para traçar as atividades adequadas.</p>
+                
+                <div class="space-y-4">
+                    <div class="border-b pb-3">
+                        <label class="block text-sm font-semibold mb-1 text-stone-700">1. Como a criança comunica a maior parte do tempo?</label>
+                        <select id="behavCom" class="w-full p-2 border rounded text-sm">
+                            <option value="Forma frases completas e complexas">Forma frases completas e complexas</option>
+                            <option value="Diz poucas palavras isoladas">Diz poucas palavras isoladas para pedir o que quer</option>
+                            <option value="Usa apenas gestos">Usa apenas gestos (aponta com o dedo, puxa pela mão)</option>
+                            <option value="Usa pranchas de comunicação (PECS)">Usa pranchas de comunicação (PECS/Símbolos visuais)</option>
+                            <option value="Não-verbal">Não-verbal (não emite falas funcionais)</option>
+                        </select>
+                    </div>
+                    <div class="border-b pb-3">
+                        <label class="block text-sm font-semibold mb-1 text-stone-700">2. A criança responde quando é chamada pelo nome?</label>
+                        <div class="flex space-x-4 text-sm">
+                            <label><input type="radio" name="behavNome" value="Sempre"> Sempre</label>
+                            <label><input type="radio" name="behavNome" value="Às vezes"> Às vezes</label>
+                            <label><input type="radio" name="behavNome" value="Nunca"> Nunca</label>
+                        </div>
+                    </div>
+                    <div class="border-b pb-3">
+                        <label class="block text-sm font-semibold mb-1 text-stone-700">3. Mantém contacto visual direto ao conversar ou brincar?</label>
+                        <div class="flex space-x-4 text-sm">
+                            <label><input type="radio" name="behavOlhar" value="Sempre"> Sim, com facilidade</label>
+                            <label><input type="radio" name="behavOlhar" value="Pouco"> Apenas por breves instantes</label>
+                            <label><input type="radio" name="behavOlhar" value="Não"> Evita ativamente o olhar</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 text-stone-700">4. Necessita de ajuda direta para se vestir ou comer sozinho?</label>
+                        <div class="flex space-x-4 text-sm">
+                            <label><input type="radio" name="behavAutonomia" value="Independente"> Consegue de forma independente</label>
+                            <label><input type="radio" name="behavAutonomia" value="Parcial"> Precisa de alguma ajuda</label>
+                            <label><input type="radio" name="behavAutonomia" value="Dependente"> Depende totalmente de auxílio</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PASSO 4: ROTINA DIÁRIA ATUAL -->
+            <div class="step" data-step="4">
+                <h3 class="text-lg font-semibold mb-4 text-stone-700">Passo 4: Rotina Diária Atual</h3>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="field">
+                        <label class="block text-sm font-medium mb-1" for="horaAcorda">Hora que costuma acordar *</label>
+                        <input type="time" id="horaAcorda" class="w-full p-2 border border-stone-300 rounded" required>
+                    </div>
+                    <div class="field">
+                        <label class="block text-sm font-medium mb-1" for="horaDorme">Hora que costuma dormir *</label>
+                        <input type="time" id="horaDorme" class="w-full p-2 border border-stone-300 rounded" required>
+                    </div>
+                </div>
+
+                <div class="field mb-4">
+                    <label class="block text-sm font-medium mb-2">Quais são os dias em que a criança realiza alguma terapia ou atendimento fixo?</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="diasTerapia" value="Segunda"> <span>Segunda</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="diasTerapia" value="Terça"> <span>Terça</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="diasTerapia" value="Quarta"> <span>Quarta</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="diasTerapia" value="Quinta"> <span>Quinta</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="diasTerapia" value="Sexta"> <span>Sexta</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="diasTerapia" value="Sábado"> <span>Sábado</span></label>
+                    </div>
+                </div>
+
+                <div class="field mb-4">
+                    <label class="block text-sm font-medium mb-2">Frequenta atualmente a escola?</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="flex items-center space-x-2 border p-2 rounded cursor-pointer hover:bg-stone-50"><input type="radio" name="escola" value="Sim" class="escola-radio"> <span>Sim</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded cursor-pointer hover:bg-stone-50"><input type="radio" name="escola" value="Não" class="escola-radio"> <span>Não</span></label>
+                    </div>
+                </div>
+
+                <div id="escolaInfo" class="field mb-4 hidden-flow">
+                    <label class="block text-sm font-medium mb-1" for="nomeEscola">Nome da escola (opcional)</label>
+                    <input type="text" id="nomeEscola" class="w-full p-2 border border-stone-300 rounded">
+                </div>
+
+                <div class="field">
+                    <label class="block text-sm font-medium mb-1">Quanto tempo utiliza ecrãs (telemóvel, tablet ou TV) por dia?</label>
+                    <select id="tempoEcra" class="w-full p-2 border border-stone-300 rounded outline-none">
+                        <option value="Menos de 1 hora">Menos de 1 hora</option>
+                        <option value="1 a 2 horas">De 1 a 2 horas</option>
+                        <option value="2 a 4 horas">De 2 a 4 horas</option>
+                        <option value="Mais de 4 horas">Mais de 4 horas por dia</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- PASSO 5: SENSIBILIDADES SENSORIAIS E COMPORTAMENTOS -->
+            <div class="step" data-step="5">
+                <h3 class="text-lg font-semibold mb-2 text-stone-700">Passo 5: Perfil Sensorial e Comportamental</h3>
+                <p class="text-xs text-stone-500 mb-4">Selecione todas as características que se aplicam.</p>
+
+                <div class="field mb-4">
+                    <label class="block text-sm font-medium mb-2 text-stone-700">A criança apresenta sensibilidade acentuada a:</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="sensibilidade" value="Sons altos"> <span>Sons altos ou agudos</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="sensibilidade" value="Luz intensa"> <span>Luz muito intensa</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="sensibilidade" value="Cheiros"> <span>Cheiros específicos</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="sensibilidade" value="Toque"> <span>Toque físico repentino</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="sensibilidade" value="Texturas"> <span>Texturas (roupas/alimentos)</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="sensibilidade" value="Multidões"> <span>Locais com multidões</span></label>
+                    </div>
+                </div>
+
+                <div class="field mb-4">
+                    <label class="block text-sm font-medium mb-2 text-stone-700">A criança costuma apresentar estes comportamentos de forma recorrente?</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="comportamentos" value="Bater palmas/Flapping"> <span>Flapping / Bater palmas</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="comportamentos" value="Andar em círculos"> <span>Girar ou andar em círculos</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="comportamentos" value="Alinhar objetos"> <span>Alinhar ou ordenar brinquedos</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="comportamentos" value="Repetir palavras"> <span>Ecolalia / Repetir palavras</span></label>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="flex items-center space-x-2 border p-3 rounded cursor-pointer hover:bg-stone-50">
+                        <input type="checkbox" id="seletividadeAlimentar" value="Sim">
+                        <div>
+                            <span class="font-medium text-sm block">Apresenta Seletividade Alimentar acentuada?</span>
+                            <span class="text-xs text-stone-500 block">Dificuldade extrema em aceitar certos alimentos, cores ou texturas no prato.</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- PASSO 6: MOTIVAÇÕES E INTERESSES -->
+            <div class="step" data-step="6">
+                <h3 class="text-lg font-semibold mb-2 text-stone-700">Passo 6: Motivações e Interesses</h3>
+                <p class="text-xs text-stone-500 mb-4">Escolha os motivadores da criança.</p>
+                <div class="grid grid-cols-2 gap-2">
+                    <label class="flex items-center space-x-2 border p-3 rounded cursor-pointer hover:bg-stone-50"><input type="checkbox" name="motivadores" value="Música"> <span>🎵 Música / Ritmos</span></label>
+                    <label class="flex items-center space-x-2 border p-3 rounded cursor-pointer hover:bg-stone-50"><input type="checkbox" name="motivadores" value="Brinquedos"> <span>🤖 Brinquedos mecânicos</span></label>
+                    <label class="flex items-center space-x-2 border p-3 rounded cursor-pointer hover:bg-stone-50"><input type="checkbox" name="motivadores" value="Desenho"> <span>🎨 Desenho / Pintura</span></label>
+                    <label class="flex items-center space-x-2 border p-3 rounded cursor-pointer hover:bg-stone-50"><input type="checkbox" name="motivadores" value="Animais"> <span>🐶 Animais de estimação</span></label>
+                    <label class="flex items-center space-x-2 border p-3 rounded cursor-pointer hover:bg-stone-50"><input type="checkbox" name="motivadores" value="Água"> <span>💧 Brincar com água</span></label>
+                    <label class="flex items-center space-x-2 border p-3 rounded cursor-pointer hover:bg-stone-50"><input type="checkbox" name="motivadores" value="Histórias"> <span>📚 Histórias / Livros</span></label>
+                </div>
+                <div class="field mt-4">
+                    <label class="block text-sm font-medium mb-1" for="medicacao">A criança faz uso de medicação contínua? (Opcional)</label>
+                    <input type="text" id="medicacao" class="w-full p-2 border border-stone-300 rounded" placeholder="Apenas para informação no dossiê de saúde">
+                </div>
+            </div>
+
+            <!-- BOTÕES DE NAVEGAÇÃO -->
+            <div class="wizard-nav flex justify-between pt-6 border-t mt-8">
+                <button type="button" class="btn btn-ghost px-4 py-2 text-stone-500 border border-transparent rounded hover:bg-stone-100" id="btnBack">Voltar</button>
+                <button type="button" class="btn btn-primary bg-coral-500 hover:bg-coral-600 text-white px-6 py-2 rounded font-medium" id="btnNext">Continuar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- ECRÃ DE CARREGAMENTO DA IA -->
+    <div id="loadingAI" class="hidden-flow flex flex-col items-center justify-center py-12 text-center">
+        <div class="w-16 h-16 border-4 border-coral-500 border-t-transparent rounded-full animate-spin mb-6"></div>
+        <h2 class="text-2xl font-bold font-['Fraunces'] text-stone-800 mb-2">Estamos a analisar o perfil de <span id="analisandoNome">...</span></h2>
+        <div class="w-64 bg-stone-100 h-2 rounded-full overflow-hidden mb-4">
+            <div id="aiBar" class="h-full bg-coral-500 transition-all duration-1000" style="width: 0%;"></div>
+        </div>
+        <p class="text-stone-600 animate-pulse text-sm">A Inteligência Artificial do EntreMundos está a preparar a primeira rotina personalizada...</p>
+    </div>
+
+    <!-- CONFIRMAÇÃO DA IA -->
+    <div class="success-panel hidden-flow" id="successPanel">
+        <div class="center-screen text-center py-6">
+            <div class="icon-badge w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h2 class="text-3xl font-bold font-['Fraunces'] text-stone-800 mb-2">Perfil criado com sucesso!</h2>
+            <p class="text-stone-600 mb-8 max-w-md mx-auto">Já pode explorar recomendações, especialistas e recursos totalmente adequados para a sua família.</p>
+            
+            <div class="bg-coral-50 border border-coral-200 rounded-lg p-6 text-left max-w-lg mx-auto mb-8">
+                <h4 class="font-bold text-coral-600 text-lg mb-4 flex items-center">Diagnóstico e Análise do Perfil Inicial</h4>
+                <div class="space-y-3 text-sm text-stone-700">
+                    <p><strong>Criança:</strong> <span id="summaryNome">-</span></p>
+                    <p><strong>Comunicação identificada:</strong> <span id="summaryComunicacao">-</span></p>
+                    <div class="flex items-center space-x-2">
+                        <span class="px-2 py-1 bg-coral-100 text-coral-700 text-xs font-semibold rounded">Foco 1: Comunicação Visual</span>
+                        <span class="px-2 py-1 bg-coral-100 text-coral-700 text-xs font-semibold rounded">Foco 2: Apoio Sensorial</span>
+                    </div>
+                </div>
+            </div>
+
+            <a href="dashboardFamilia.html" class="inline-block bg-coral-500 hover:bg-coral-600 text-white font-bold py-3 px-8 rounded-lg transition-colors">Ir para o Painel da Família</a>
+        </div>
+    </div>
+
+</div>
+
+<!-- Ligação para o ficheiro JavaScript externo -->
+<script src="javascripts/crianca.js"></script>
+</body>
+</html>

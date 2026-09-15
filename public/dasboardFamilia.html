@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard da Família — EntreMundos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stylesheets/global.css">
+<link rel="stylesheet" href="stylesheets/castro.css">
+</head>
+<body>
+
+<div class="app-shell">
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- MENU LATERAL DA FAMÍLIA -->
+  <aside class="app-sidebar" id="appSidebar">
+     <a href="#" class="logo">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="30" height="30">
+            <circle cx="8" cy="16" r="5.5" fill="var(--coral)"/>
+            <circle cx="24" cy="16" r="5.5" fill="var(--teal)"/>
+            <path d="M13 16 C 17 10, 19 22, 23 16" stroke="var(--ink)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span>
+        Entre<em>Mundos</em>
+      </a>
+    <p class="sidebar-role">Área da família</p>
+
+    <nav class="sidebar-nav">
+      <a href="dashboard-familia.html" class="active">
+        <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1v-9"/></svg>
+        Dashboard
+      </a>
+      <a href="jogos.html">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="4"/><path d="M8 12h.01M6 12h.01M17 11h.01M15 12h.01"/></svg>
+        Jogos & Conteúdos
+      </a>
+      <a href="home.html#biblioteca">
+        <svg viewBox="0 0 24 24"><path d="M4 5a1 1 0 011-1h5.5a2.5 2.5 0 012.5 2.5V20a2 2 0 00-2-1H4V5z"/><path d="M20 5a1 1 0 00-1-1h-5.5A2.5 2.5 0 0011 6.5V20a2 2 0 012-1h7V5z"/></svg>
+        Recursos & Guias
+      </a>
+      <a href="#ia-resumo">
+        <svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z"/><circle cx="19" cy="18" r="2"/></svg>
+        Assistente IA
+      </a>
+      <a href="#especialistas">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Especialistas
+      </a>
+      <a href="#agenda">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
+        Agenda
+      </a>
+      <a href="#relatorios">
+        <svg viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 00-1 1v16a1 1 0 001 1h12a1 1 0 001-1V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+        Relatórios
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-help">
+        <p>Precisa de suporte?</p>
+        <a href="home.html#especialistas">Falar com especialista</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ÁREA PRINCIPAL -->
+  <main class="app-main">
+
+    <header class="app-topbar">
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Abrir menu">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <div class="topbar-greeting">
+        <h1>Olá, Odete 👋</h1>
+        <p>Bem-vinda ao seu painel de acompanhamento familiar.</p>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" aria-label="Notificações">
+          <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+        </button>
+        <span class="avatar">OD</span>
+      </div>
+    </header>
+
+    <div class="dash-grid">
+
+      <!-- ATALHO DE BOAS-VINDAS E RESUMO DA FAMÍLIA -->
+      <div class="col-8">
+        <div class="card tone-welcome">
+          <h2>Resumo das Atividades da Semana</h2>
+          <p>O acompanhamento de rotinas e consultas está em dia. A evolução semanal do João apresenta avanços significativos na área de comunicação.</p>
+          <div style="margin-top: 15px;">
+            <a href="#agenda" class="btn-mini-outline">Ver agenda da semana</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARTÃO INCORPORADO: RESUMO RÁPIDO DO FILHO (Importado da Criança) -->
+      <div class="col-4">
+        <div class="card">
+          <p class="card-title">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg>
+            Perfil Ativo: João Manuel
+          </p>
+          <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 12px;">6 anos · Autismo Nível 2</p>
+          <div class="tag-list">
+            <span class="tag-pill">🌱 Comunicação</span>
+            <span class="tag-pill">⭐ Autonomia</span>
+          </div>
+          <a href="cadastro-crianca.html" style="display: inline-block; margin-top: 15px; font-size: 0.85rem; color: var(--color-primary); font-weight: 600;">Editar dados do filho →</a>
+        </div>
+      </div>
+
+      <!-- INFORMAÇÃO CHAVE ADICIONADA: EVOLUÇÃO E PROGRESSO (Importado da Criança) -->
+      <div class="col-8">
+        <div class="card">
+          <p class="card-title">
+            <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>
+            Progresso de Desenvolvimento do João
+          </p>
+          <div class="metric-row">
+            <div class="metric-head"><span>Comunicação Expressiva</span><span>70%</span></div>
+            <div class="metric-bar"><div class="metric-fill" data-value="70"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-head"><span>Coordenação e Interação</span><span>64%</span></div>
+            <div class="metric-bar"><div class="metric-fill tone-secondary" data-value="64"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-head"><span>Autonomia nas Rotinas</span><span>82%</span></div>
+            <div class="metric-bar"><div class="metric-fill tone-accent" data-value="82"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ASSISTENTE IA DA FAMÍLIA -->
+      <div class="col-4" id="ia-resumo">
+        <div class="card ai-summary">
+          <p class="card-title">
+            <svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z"/><circle cx="19" cy="18" r="2"/></svg>
+            Sugestão Inteligente IA
+          </p>
+          <p>O João teve um bom desempenho nos jogos de estímulo visual esta semana.</p>
+          <div class="ai-reco">
+            <p><strong>Dica para a Família:</strong> Mantenha os estímulos com músicas infantis durante a rotina da noite.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONSULTAS E AGENDA -->
+      <div class="col-6" id="agenda">
+        <div class="card">
+          <p class="card-title">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
+            Próximas Consultas
+          </p>
+          <div class="list">
+            <div class="list-item"><span class="li-time">Amanhã</span><div class="li-body"><div class="li-title">Dra. Ana</div><div class="li-sub">15:30 · Psicologia infantil</div></div></div>
+            <div class="list-item"><span class="li-time">Sexta</span><div class="li-body"><div class="li-title">Rita Carvalho</div><div class="li-sub">10:00 · Terapia da fala</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RELATÓRIOS DOS ESPECIALISTAS -->
+      <div class="col-6" id="relatorios">
+        <div class="card">
+          <p class="card-title">
+            <svg viewBox="0 0 24 24"><path d="M14 3H6a1 1 0 00-1 1v16a1 1 0 001 1h12a1 1 0 001-1V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+            Relatórios e Documentos
+          </p>
+          <div class="list">
+            <div class="report-row">
+              <div><div class="report-title">Relatório de Evolução — Junho</div><div class="report-sub">PDF · Atualizado há 3 dias</div></div>
+              <span class="status is-done">Disponível</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EntreMundos - Login do Admin</title>
+  <style>
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background-color: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      width: 100%;
+      max-width: 360px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 24px;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 16px;
+      text-align: left;
+    }
+    label {
+      display: block;
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 6px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    .primary-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: #4CAF50; /* Cor verde do seu botão */
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .primary-btn:hover {
+      background-color: #45a049;
+    }
+    /* ESTILO PARA O BOTÃO/LINK DE VOLTAR */
+    .back-link {
+      display: inline-block;
+      margin-top: 18px;
+      color: #666;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .back-link:hover {
+      color: #333;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <h2>Acesso Restrito</h2>
+    
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" value="admin@entremundos.com" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Palavra-passe</label>
+        <input type="password" id="password" value="123456" required>
+      </div>
+      
+      <button type="submit" class="primary-btn">Entrar no Painel</button>
+    </form>
+
+    <!-- LINK PARA VOLTAR À PÁGINA INICIAL -->
+    <a href="Index.html" class="back-link">← Voltar ao início</a>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Guarda o estado de login e redireciona para o painel de admin
+      localStorage.setItem('adminLogado', 'true');
+      window.location.href = 'admin.html';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+/* ==========================================================
+   ENTREMUNDOS - MÓDULO DE JOGOS (jogos.css)
+   ========================================================== */
+
+/* Layout Geral */
+.app-shell {
+  display: flex !important;
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+/* ----------------------------------------------------------
+   1. BARRA LATERAL (SIDEBAR) - Ajuste do design original
+   ---------------------------------------------------------- */
+.app-sidebar {
+  width: 200px !important;
+  min-width: 200px !important;
+  background: #ffffff !important;
+  border-right: 1px solid #e2e8f0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 28px 16px !important;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.sidebar-logo {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  text-decoration: none;
+  margin-bottom: 36px;
+  display: block;
+}
+
+.sidebar-logo em {
+  font-style: normal;
+  color: #3bb1a2;
+}
+
+.sidebar-nav {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.sidebar-nav a {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px;
+  border-radius: 12px;
+  text-decoration: none !important;
+  color: #334155 !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  gap: 6px;
+}
+
+.sidebar-nav a svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+.sidebar-nav a.active {
+  background-color: #cbfbf0 !important;
+  color: #0f766e !important;
+}
+
+/* ----------------------------------------------------------
+   2. ÁREA PRINCIPAL DOS JOGOS
+   ---------------------------------------------------------- */
+.app-main.kids-space {
+  margin-left: 200px !important;
+  flex: 1 !important;
+  padding: 32px 40px !important;
+  width: calc(100% - 200px) !important;
+  box-sizing: border-box;
+}
+
+/* ----------------------------------------------------------
+   3. JOGO RECOMENDADO
+   ---------------------------------------------------------- */
+.featured-game-section {
+  margin-bottom: 36px;
+  position: relative;
+}
+
+.featured-badge {
+  display: inline-block;
+  background: #f97316;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 8px 18px;
+  border-radius: 12px 12px 0 0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.featured-card {
+  background: #ffffff;
+  border-radius: 0 20px 20px 20px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 3px solid #f97316;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.featured-card:hover {
+  transform: translateY(-3px);
+}
+
+.featured-card .game-visual {
+  height: 220px;
+}
+
+/* ----------------------------------------------------------
+   4. GALERIA DE JOGOS E CARTÕES
+   ---------------------------------------------------------- */
+.games-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.kid-game-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kid-game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.game-visual {
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-hero-emoji {
+  font-size: 4rem;
+}
+
+/* Gradientes dos Cartões */
+.bg-gradient-1 { background: linear-gradient(135deg, #6ee7b7 0%, #34d399 100%); }
+.bg-gradient-2 { background: linear-gradient(135deg, #fde047 0%, #facc15 100%); }
+.bg-gradient-3 { background: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 100%); }
+.bg-gradient-4 { background: linear-gradient(135deg, #f472b6 0%, #e879f9 100%); }
+
+.game-title-bar {
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+}
+
+.game-title-bar h2,
+.game-title-bar h3 {
+  margin: 0;
+  color: #1e293b;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.play-btn-icon {
+  font-size: 1.2rem;
+  color: #0284c7;
+}
+
+/* ----------------------------------------------------------
+   5. MODAL DE JOGO (TELA CHEIA)
+   ---------------------------------------------------------- */
+.game-player-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-game-btn {
+  align-self: flex-end;
+  background: #ef4444;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 30px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.game-canvas-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.loading-emoji {
+  font-size: 5rem;
+  margin-bottom: 12px;
+}

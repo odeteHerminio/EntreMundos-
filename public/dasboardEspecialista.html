@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard do Especialista — EntreMundos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="stylesheets/global.css">
+  <link rel="stylesheet" href="stylesheets/castro.css">
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="app-sidebar" id="appSidebar">
+       <a href="#" class="logo">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="30" height="30">
+            <circle cx="8" cy="16" r="5.5" fill="var(--coral)"/>
+            <circle cx="24" cy="16" r="5.5" fill="var(--teal)"/>
+            <path d="M13 16 C 17 10, 19 22, 23 16" stroke="var(--ink)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span>
+        Entre<em>Mundos</em>
+      </a>
+      <p class="sidebar-role">Área do Especialista</p>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard-especialista.html" class="active">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 001 1h4v-6h4v6h4a1 1 0 001-1v-9"/></svg>
+          Dashboard
+        </a>
+        <a href="#familias">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          Famílias
+        </a>
+        <a href="#criancas">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg>
+          Crianças
+        </a>
+        <a href="#agenda">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
+          Agenda
+        </a>
+        <a href="#relatorios">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a1 1 0 00-1 1v16a1 1 0 001 1h12a1 1 0 001-1V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+          Relatórios
+        </a>
+        <a href="#mensagens">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          Mensagens
+        </a>
+        <a href="#estatisticas">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>
+          Estatísticas
+        </a>
+        <a href="#configuracoes">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          Configurações
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-help">
+          <p>Documentos pendentes?</p>
+          <a href="cadastro-especialista.html">Atualizar perfil profissional</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="app-main">
+
+      <!-- TOPBAR -->
+      <header class="app-topbar">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Abrir menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <div class="topbar-greeting">
+          <h1>Bom dia, Dra. Ana</h1>
+          <p>Psicóloga Infantil • Painel de Acompanhamento Clínico</p>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="icon-btn" aria-label="Notificações">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+            <span class="ping"></span>
+          </button>
+          <button class="icon-btn" aria-label="Configurações">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          </button>
+          <div class="user-avatar">DA</div>
+        </div>
+      </header>
+
+      <!-- BARRA DE FERRAMENTAS E AÇÕES RÁPIDAS -->
+      <div class="action-bar">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#64748b" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" class="search-input" placeholder="Pesquisar por criança, responsável ou relatório...">
+        </div>
+        <div class="action-buttons">
+          <button class="btn btn-primary">+ Nova Consulta</button>
+          <button class="btn btn-secondary">📄 Novo Relatório</button>
+        </div>
+      </div>
+
+      <!-- PAINEL GERAL / GRELHA -->
+      <div class="dash-grid">
+
+        <!-- PRIORIDADES CRÍTICAS -->
+        <div class="col-8">
+          <div class="card card-critical">
+            <h3 class="card-title text-danger">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4M12 17h.01"/></svg>
+              Prioridades Críticas & Atenção Imediata
+            </h3>
+            
+            <div class="item-list">
+              <div class="item-row">
+                <span class="status-indicator red">●</span>
+                <div class="item-info">
+                  <div class="item-title">João Manuel</div>
+                  <div class="item-sub text-danger">Relatório de acompanhamento mensal vence hoje às 23:59.</div>
+                </div>
+                <a href="#relatorios" class="btn-mini btn-danger">Finalizar</a>
+              </div>
+
+              <div class="item-row">
+                <span class="status-indicator yellow">●</span>
+                <div class="item-info">
+                  <div class="item-title">Carlos Santos</div>
+                  <div class="item-sub text-muted">Mãe enviou mensagem: <em>"O Carlos teve dificuldades de adaptação hoje..."</em></div>
+                </div>
+                <a href="#mensagens" class="btn-mini btn-secondary">Responder</a>
+              </div>
+
+              <div class="item-row">
+                <span class="status-indicator blue">●</span>
+                <div class="item-info">
+                  <div class="item-title">Maria Fernandes</div>
+                  <div class="item-sub text-muted">Consulta agendada para as 15:00. Vídeo enviado pela família para pré-análise.</div>
+                </div>
+                <a href="perfil-crianca.html" class="btn-mini btn-primary">Ver Ficha</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INSIGHTS IA -->
+        <div class="col-4">
+          <div class="card card-ai">
+            <h3 class="card-title text-teal">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4L12 3z"/><circle cx="19" cy="18" r="2"/></svg>
+              Assistente IA · Insights
+            </h3>
+            <ul class="ai-list">
+              <li><strong>3 crianças</strong> apresentaram redução de engajamento nos jogos de estimulação.</li>
+              <li><strong>2 famílias</strong> não submeteram os relatórios de rotina na última semana.</li>
+              <li>O <strong>João Manuel</strong> obteve evolução estimada de <span class="text-success">+15%</span> em Comunicação Emocional.</li>
+            </ul>
+            <a href="#" class="btn btn-secondary btn-full">Ver Análise Completa</a>
+          </div>
+        </div>
+
+        <!-- CARTÕES MÉTRICAS / ESTATÍSTICAS -->
+        <div class="col-3">
+          <div class="card stat-card">
+            <div class="stat-value">42</div>
+            <div class="stat-label">Famílias Ativas <span class="text-success">(+2 esta semana)</span></div>
+          </div>
+        </div>
+
+        <div class="col-3">
+          <div class="card stat-card">
+            <div class="stat-value">18</div>
+            <div class="stat-label">Consultas <span class="text-teal">(3 hoje)</span></div>
+          </div>
+        </div>
+
+        <div class="col-3">
+          <div class="card stat-card">
+            <div class="stat-value">6</div>
+            <div class="stat-label">Relatórios <span class="text-danger">(4 urgentes)</span></div>
+          </div>
+        </div>
+
+        <div class="col-3">
+          <div class="card stat-card">
+            <div class="stat-value">12</div>
+            <div class="stat-label">Mensagens <span class="text-warning">(5 pendentes)</span></div>
+          </div>
+        </div>
+
+        <!-- AGENDA DO DIA -->
+        <div class="col-6" id="agenda">
+          <div class="card">
+            <h3 class="card-title">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
+              Agenda do Dia (Sessões)
+            </h3>
+            <div class="item-list">
+              <div class="item-row">
+                <span class="time-tag">09:00</span>
+                <div class="item-info">
+                  <div class="item-title">João Manuel <small>• 6 anos</small></div>
+                  <div class="item-sub">Sessão Presencial — Foco: Comunicação Verbal</div>
+                </div>
+                <a href="perfil-crianca.html" class="btn-mini btn-secondary">Preparar</a>
+              </div>
+
+              <div class="item-row">
+                <span class="time-tag">11:30</span>
+                <div class="item-info">
+                  <div class="item-title">Carlos Santos <small>• 8 anos</small></div>
+                  <div class="item-sub">Primeira Consulta — Foco: Anamnese e Autonomia</div>
+                </div>
+                <a href="perfil-crianca.html" class="btn-mini btn-secondary">Preparar</a>
+              </div>
+
+              <div class="item-row">
+                <span class="time-tag">15:00</span>
+                <div class="item-info">
+                  <div class="item-title">Maria Fernandes <small>• 5 anos</small></div>
+                  <div class="item-sub">Avaliação Periódica — Foco: Socialização Coletiva</div>
+                </div>
+                <a href="perfil-crianca.html" class="btn-mini btn-secondary">Preparar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TENDÊNCIAS CLÍNICAS -->
+        <div class="col-6">
+          <div class="card">
+            <h3 class="card-title">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>
+              Tendências Gerais dos Pacientes
+            </h3>
+            <div class="trend-list">
+              <div class="trend-item">
+                <span>Comunicação Funcional</span>
+                <span class="text-success">▲ +8% esta semana</span>
+              </div>
+              <div class="trend-item">
+                <span>Socialização e Integração</span>
+                <span class="text-success">▲ +5% esta semana</span>
+              </div>
+              <div class="trend-item">
+                <span>Autonomia no Quotidiano</span>
+                <span class="text-success">▲ +12% esta semana</span>
+              </div>
+              <div class="trend-item">
+                <span>Regulação Emocional</span>
+                <span class="text-muted">→ Estável</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CRIANÇAS ACOMPANHADAS -->
+        <div class="col-8" id="criancas">
+          <div class="card">
+            <div class="card-header-flex">
+              <h3 class="card-title">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0116 0"/></svg>
+                Crianças Acompanhadas
+              </h3>
+              <a href="#" class="card-link">Ver todas (42)</a>
+            </div>
+
+            <div class="item-list">
+              <div class="item-row">
+                <div class="avatar-circle">JM</div>
+                <div class="item-info">
+                  <div class="item-title">João Manuel <span class="badge badge-green">Evolução Positiva</span></div>
+                  <div class="item-sub">Objetivo: Comunicação • Última sessão há 3 dias</div>
+                </div>
+                <a href="perfil-crianca.html" class="btn-mini btn-secondary">Perfil</a>
+              </div>
+
+              <div class="item-row">
+                <div class="avatar-circle">CS</div>
+                <div class="item-info">
+                  <div class="item-title">Carlos Santos <span class="badge badge-yellow">Revisar Plano</span></div>
+                  <div class="item-sub">Objetivo: Autonomia • Consulta realizada hoje</div>
+                </div>
+                <a href="perfil-crianca.html" class="btn-mini btn-secondary">Perfil</a>
+              </div>
+
+              <div class="item-row">
+                <div class="avatar-circle">MF</div>
+                <div class="item-info">
+                  <div class="item-title">Maria Fernandes <span class="badge badge-red">Inativo há 12 dias</span></div>
+                  <div class="item-sub">Objetivo: Socialização • Sessão há 1 semana</div>
+                </div>
+                <a href="perfil-crianca.html" class="btn-mini btn-secondary">Perfil</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- NÚCLEOS FAMILIARES -->
+        <div class="col-4" id="familias">
+          <div class="card">
+            <h3 class="card-title">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              Núcleos Familiares
+            </h3>
+            <div class="tag-cloud">
+              <span class="tag">Família Manuel</span>
+              <span class="tag">Família Santos</span>
+              <span class="tag">Família Fernandes</span>
+              <span class="tag tag-more">+ 39 núcleos</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

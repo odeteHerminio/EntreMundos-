@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EntreMundos | Painel do Administrador</title>
+  <link rel="stylesheet" href="stylesheets/admin.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- MODAL: RESPONDER SUPORTE -->
+  <div class="modal-overlay" id="modalSupport">
+    <div class="modal-card">
+      <h3>Responder Chamado de Suporte</h3>
+      <p id="supportUser">Para: Família 024</p>
+      <div class="form-group">
+        <label>Mensagem da Família:</label>
+        <div class="message-box-read" id="supportQuestion">Dificuldade de acesso ao jogo de atenção visual.</div>
+      </div>
+      <div class="form-group">
+        <label for="supportReplyText">Sua Resposta:</label>
+        <textarea id="supportReplyText" rows="4" placeholder="Escreva aqui a resposta para a família..."></textarea>
+      </div>
+      <div class="modal-actions">
+        <button class="secondary-btn" id="closeSupportModal">Cancelar</button>
+        <button class="primary-btn" id="sendSupportReply">Enviar Resposta</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: NOVO CONTEÚDO / JOGO -->
+  <div class="modal-overlay" id="modalCatalog">
+    <div class="modal-card">
+      <h3>Adicionar Novo Jogo/Conteúdo</h3>
+      <div class="form-group">
+        <label>Título do Jogo:</label>
+        <input type="text" id="gameTitle" placeholder="Ex: Encontra as Cores">
+      </div>
+      <div class="form-group">
+        <label>Link / URL do Jogo:</label>
+        <input type="url" id="gameUrl" placeholder="https://...">
+      </div>
+      <div class="form-group">
+        <label>Estímulo Principal (Tag para IA):</label>
+        <select id="gameCategory">
+          <option>Atenção Visual</option>
+          <option>Comunicação Funcional</option>
+          <option>Coordenação Motora</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <button class="secondary-btn" id="closeCatalogModal">Cancelar</button>
+        <button class="primary-btn" id="saveCatalogBtn">Guardar no Catálogo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: NOVO ADMINISTRADOR -->
+  <div class="modal-overlay" id="modalAdmin">
+    <div class="modal-card">
+      <h3>Adicionar Novo Administrador</h3>
+      <div class="form-group">
+        <label>Nome Completo:</label>
+        <input type="text" id="adminName" placeholder="Nome do assistente">
+      </div>
+      <div class="form-group">
+        <label>E-mail de Acesso:</label>
+        <input type="email" id="adminEmail" placeholder="email@entremundos.org">
+      </div>
+      <div class="form-group">
+        <label>Nível de Permissão:</label>
+        <select id="adminRole">
+          <option>Assistente / Moderador (Acesso Limitado)</option>
+          <option>Super Administrador (Acesso Total)</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <button class="secondary-btn" id="closeAdminModal">Cancelar</button>
+        <button class="primary-btn" id="saveAdminBtn">Criar Utilizador</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <span class="logo-entre">Entre</span>
+        <span class="logo-mundos">Mundos</span>
+      </div>
+
+      <div class="admin-badge">
+        <div class="avatar">A</div>
+        <div>
+          <strong>Administrador</strong>
+          <small>Gestão da plataforma</small>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Navegação administrativa">
+        <button class="nav-item active" data-section="overview">⌂ <span>Visão geral</span></button>
+        <button class="nav-item" data-section="users">♙ <span>Utilizadores e acessos</span></button>
+        <button class="nav-item" data-section="specialists">✓ <span>Especialistas</span><b class="nav-count">4</b></button>
+        <button class="nav-item" data-section="catalog">▦ <span>Jogos e conteúdos</span></button>
+        <button class="nav-item" data-section="ai">✧ <span>IA e recomendações</span></button>
+        <button class="nav-item" data-section="support">✉ <span>Suporte e reclamações</span><b class="nav-count">3</b></button>
+        <button class="nav-item" data-section="security">⌘ <span>Segurança e auditoria</span></button>
+        <button class="nav-item" data-section="settings">⚙ <span>Definições</span></button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <p>EntreMundos</p>
+        <small>Ambiente administrativo · MVP</small>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <div>
+          <p class="eyebrow">PAINEL DE CONTROLO</p>
+          <h1 id="pageTitle">Visão geral</h1>
+        </div>
+        <div class="top-actions">
+          <button class="icon-button" title="Notificações" id="notificationBtn">♧<span class="notification-dot"></span></button>
+          <div class="profile-mini">
+            <div class="avatar">A</div>
+            <span>Admin</span>
+          </div>
+          <!-- BOTÃO DE SAIR (LOGOUT) ADICIONADO -->
+          <button class="secondary-btn" id="logoutBtn" style="padding: 6px 12px; font-size: 14px;">Sair</button>
+        </div>
+      </header>
+
+      <section class="page-section active" id="overview">
+        <div class="welcome-row">
+          <div>
+            <h2>Bom trabalho, administrador.</h2>
+            <p>Acompanhe o estado da plataforma e as tarefas que precisam de atenção.</p>
+          </div>
+          <button class="primary-btn" data-open="catalog">+ Adicionar conteúdo</button>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <span class="stat-label">Famílias registadas</span>
+            <strong id="statTotalFamilies">0</strong>
+            <small class="positive">↑ 12% este mês</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">Especialistas ativos</span>
+            <strong id="statActiveSpecialists">0</strong>
+            <small class="positive">↑ 4 novos</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">Jogos publicados</span>
+            <strong id="statPublishedGames">0</strong>
+            <small>8 em revisão</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">Chamados pendentes</span>
+            <strong id="statPendingSupport">0</strong>
+            <small class="warning-text">Requer atenção</small>
+          </article>
+        </div>
+
+        <div class="content-grid">
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">ATENÇÃO NECESSÁRIA</p>
+                <h3>Atividades pendentes</h3>
+              </div>
+              <button class="text-btn" data-open="specialists">Ver tudo →</button>
+            </div>
+            <div class="task-list">
+              <div class="task-item"><span class="task-icon mint">✓</span><div><strong>Especialistas aguardam validação</strong><p>4 inscrições com documentos por analisar.</p></div><button class="small-btn" data-open="specialists">Analisar</button></div>
+              <div class="task-item"><span class="task-icon sand">▦</span><div><strong>Conteúdos em revisão</strong><p>8 jogos precisam de verificação.</p></div><button class="small-btn" data-open="catalog">Rever</button></div>
+              <div class="task-item"><span class="task-icon rose">✉</span><div><strong>Chamados de suporte</strong><p>3 reclamações aguardam resposta.</p></div><button class="small-btn" data-open="support">Abrir</button></div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">ATIVIDADE RECENTE</p>
+                <h3>Registos do sistema</h3>
+              </div>
+              <button class="text-btn" data-open="security">Ver logs →</button>
+            </div>
+            <ul class="activity-list" id="recentActivityList">
+              <li><span class="activity-dot"></span><div><strong>A carregar atividade recente...</strong></div></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="page-section" id="users">
+        <div class="section-intro"><h2>Utilizadores e acessos</h2><p>Gerir famílias, crianças, especialistas e permissões internas.</p></div>
+        <div class="toolbar"><input class="search-input" placeholder="Pesquisar utilizador..." data-table-search="usersTable"><button class="primary-btn" id="openAdminModalBtn">+ Novo administrador</button></div>
+        <div class="panel table-panel"><table id="usersTable"><thead><tr><th>Utilizador</th><th>Perfil</th><th>Estado</th><th>Último acesso</th><th>Ação</th></tr></thead><tbody id="usersTableBody">
+          <!-- Dados populados via Fetch JS -->
+        </tbody></table></div>
+      </section>
+
+      <section class="page-section" id="specialists">
+        <div class="section-intro"><h2>Gestão de especialistas</h2><p>Verificar documentos, aprovar inscrições e controlar acessos.</p></div>
+        <div class="stats-grid compact"><article class="stat-card"><span class="stat-label">Por analisar</span><strong id="statSpecPending">0</strong></article><article class="stat-card"><span class="stat-label">Aprovados</span><strong id="statSpecApproved">0</strong></article><article class="stat-card"><span class="stat-label">Rejeitados</span><strong id="statSpecRejected">0</strong></article></div>
+        <div class="panel table-panel"><table id="specialistsTable"><thead><tr><th>Nome</th><th>Especialidade</th><th>Documentos</th><th>Estado</th><th>Ação</th></tr></thead><tbody id="specialistsTableBody">
+          <!-- Dados populados via Fetch JS -->
+        </tbody></table></div>
+      </section>
+
+      <section class="page-section" id="catalog">
+        <div class="section-intro"><h2>Jogos e conteúdos</h2><p>Administrar o catálogo que alimenta a personalização da plataforma.</p></div>
+        <div class="toolbar"><input class="search-input" placeholder="Pesquisar jogo ou recurso..."><button class="primary-btn" id="addContentBtn">+ Novo conteúdo</button></div>
+        <div class="content-cards" id="catalogContainer">
+          <!-- Cartões dinâmicos de jogos inseridos aqui via JS -->
+        </div>
+        <div class="panel note-panel"><strong>Metadados obrigatórios</strong><p>Registe objetivo pedagógico, habilidade trabalhada, faixa etária, nível de apoio, estímulos sensoriais, acessibilidade, link/ficheiro e estado de revisão.</p></div>
+      </section>
+
+      <section class="page-section" id="ai">
+        <div class="section-intro"><h2>IA e sistema de recomendação</h2><p>Monitorizar a camada inteligente sem confundir apoio automatizado com diagnóstico clínico.</p></div>
+        <div class="content-grid">
+          <article class="panel"><div class="panel-heading"><h3>Funções da IA</h3><span class="tag">Proposta</span></div><ul class="check-list"><li>Assistente para responder a dúvidas de famílias em linguagem acessível.</li><li>Interpretação de respostas e criação de um perfil inicial de necessidades de apoio.</li><li>Suporte futuro a línguas locais, com validação humana.</li><li>Identificação de padrões de utilização para apoiar pais e profissionais.</li></ul></article>
+          <article class="panel"><div class="panel-heading"><h3>Sistema de recomendação</h3><span class="tag">Catálogo</span></div><ul class="check-list"><li>Selecionar jogos e conteúdos com base nos metadados dos recursos.</li><li>Relacionar perfil, desempenho, preferências e objetivos de aprendizagem.</li><li>Atualizar a lista de atividades conforme a interação da criança.</li><li>Registar justificações simples para cada recomendação.</li></ul></article>
+        </div>
+        <div class="warning-box"><strong>Limite ético:</strong> a IA não realiza diagnóstico médico, não determina clinicamente o nível de autismo e não substitui profissionais de saúde. Qualquer perfil inicial deve ser apresentado como apoio provisório.</div>
+      </section>
+
+      <section class="page-section" id="support">
+        <div class="section-intro"><h2>Suporte e reclamações</h2><p>Centralizar dúvidas, reportes e acompanhamento de chamados.</p></div>
+        <div class="panel table-panel"><table id="supportTable"><thead><tr><th>Chamado</th><th>Assunto</th><th>Utilizador</th><th>Estado</th><th>Ação</th></tr></thead><tbody id="supportTableBody">
+          <!-- Chamados populados via Fetch JS -->
+        </tbody></table></div>
+      </section>
+
+      <section class="page-section" id="security">
+        <div class="section-intro"><h2>Segurança e auditoria</h2><p>Consultar ações administrativas, acessos e registos de proteção de dados.</p></div>
+        <div class="stats-grid compact">
+          <article class="stat-card"><span class="stat-label">Acessos hoje</span><strong id="statAccessToday">0</strong></article>
+          <article class="stat-card"><span class="stat-label">Alertas de segurança</span><strong id="statSecurityAlerts">0</strong></article>
+          <article class="stat-card"><span class="stat-label">Logs registados</span><strong id="statTotalLogs">0</strong></article>
+        </div>
+        <div class="panel table-panel">
+          <table id="logsTable">
+            <thead>
+              <tr><th>Data/hora</th><th>Utilizador</th><th>Ação</th><th>Resultado</th></tr>
+            </thead>
+            <tbody id="logsTableBody">
+              <!-- Logs do MySQL são inseridos aqui dinamicamente -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="page-section" id="settings">
+        <div class="section-intro"><h2>Definições da plataforma</h2><p>Configurações gerais, permissões e políticas administrativas.</p></div>
+        <div class="panel settings-panel">
+          <label>Nome da plataforma<input value="EntreMundos"></label>
+          <label>Email de suporte<input value="suporte@entremundos.org"></label>
+          <label>Modo de aprovação de especialistas<select><option>Manual — recomendado</option><option>Automático</option></select></label>
+          <label class="switch-row"><span>Exigir consentimento dos encarregados de educação</span><input type="checkbox" checked></label>
+          <label class="switch-row"><span>Registar ações administrativas em logs</span><input type="checkbox" checked></label>
+          <button class="primary-btn">Guardar alterações</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast">Ação registada no protótipo.</div>
+
+  <!-- CÓDIGO JS PARA O BOTÃO DE LOGOUT -->
+  <script>
+    document.getElementById("logoutBtn")?.addEventListener("click", function() {
+      localStorage.removeItem("adminLogado");
+      window.location.href = "/login.html";
+    });
+  </script>
+  <script src="javascripts/admin.js"></script>
+</body>
+</html>

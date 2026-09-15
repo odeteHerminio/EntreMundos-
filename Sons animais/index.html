@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EntreMundos</title>
+  
+  <!-- Fonte Oficial (Outfit) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- CSS Principal -->
+  <link rel="stylesheet" href="stylesheets/home.css" />
+  <link rel="stylesheet" href="stylesheets/global.css" />
+  
+</head>
+<body>
+
+  <!-- CABEÇALHO DA PÁGINA (HEADER) -->
+  <header class="site-header">
+    <div class="header-container">
+      
+      <!-- LOGÓTIPO -->
+      <a href="#" class="header-logo">
+        <svg class="logo-icon" width="34" height="20" viewBox="0 0 34 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="6" cy="10" r="5" fill="#E06D53"/>
+          <path d="M6 10C12 10 14 6 20 6C24 6 28 8 28 10" stroke="#3BB1A2" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M6 10C10 10 14 14 20 14" stroke="#E06D53" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="28" cy="10" r="5" fill="#3BB1A2"/>
+        </svg>
+        <span class="logo-entre">Entre</span>
+        <span class="logo-mundos">Mundos</span>
+      </a>
+
+      <!-- Menu Central -->
+      <nav class="header-nav">
+        <div class="nav-links-wrapper">
+          <a href="#biblioteca" class="nav-link">Biblioteca</a>
+          <a href="#jogos" class="nav-link">Jogos</a>
+          <a href="#especialistas" class="nav-link">Especialistas</a>
+          <a href="#sobre" class="nav-link">Sobre</a>
+        </div>
+      </nav>
+
+      <!-- Acções da Direita -->
+      <div class="header-actions">
+        <a href="1cadastro.html" class="btn-login">Entrar</a>
+        <a href="1cadastro.html" class="btn-primary">Começar agora</a>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+    <!-- 2. SECÇÃO HERO (PRIMEIRO BLOCO) -->
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <h1>Nenhuma família tem que <span class="highlight">enfrentar o autismo</span> sozinha.</h1>
+          <p class="hero-text">
+            Uma plataforma completa de apoio, informação e comunidade para famílias, educadores e especialistas.
+          </p>
+          <div class="hero-actions">
+            <a href="1cadastro.html" class="btn btn-primary btn-lg">Começar agora</a>
+            <a href="#caminhos" class="btn-link">Conhecer a plataforma →</a>
+          </div>
+
+          <div class="hero-stats">
+            <div>
+              <strong>0</strong>
+              <span>famílias</span>
+            </div>
+            <div>
+              <strong>0</strong>
+              <span>especialistas</span>
+            </div>
+            <div>
+              <strong>0</strong>
+              <span>recursos</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ESTRUTURA PARA AS IMAGENS DO TOPO (CARROSSEL) -->
+        <div class="hero-visual">
+          <div class="hero-slider">
+            <!-- Imagem 1: Ilustração Mundo Quebra-Cabeça -->
+            <img src="images/mundo.jpeg" alt="Ilustração Mundo Quebra-Cabeça" class="slide active">
+            
+            <!-- Imagem 2: Estação / Família -->
+            <img src="images/estacao.jpeg" alt="Estação Família" class="slide">
+            
+            <!-- Imagem 3: Foto das Crianças / Família a brincar -->
+            <img src="images/pais.png" alt="Cada criança tem seu tempo" class="slide">
+            <img src="images/especialista.png" alt="Especialista apoio" class="slide">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SECÇÃO DE PESQUISA -->
+    <section class="search-section">
+      <div class="wrap">
+        <div class="search-card">
+          <h2 class="search-title">O que procura hoje?</h2>
+          <p class="search-description">
+            Descreva a situação com as suas palavras. O assistente do EntreMundos organiza os resultados por tipo: artigos, especialistas, exercícios ou histórias de outras famílias.
+          </p>
+
+          <div class="search-row">
+            <input type="text" class="search-input" placeholder="Ex.: como lidar com mudanças de rotina" />
+            <button type="button" class="btn-search">Pesquisar</button>
+          </div>
+
+          <div class="search-tags">
+            <button type="button" class="search-tag">Rotinas</button>
+            <button type="button" class="search-tag">Comunicação</button>
+            <button type="button" class="search-tag active">Escola</button>
+            <button type="button" class="search-tag">Sensorial</button>
+            <button type="button" class="search-tag">Primeiros passos</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SECÇÃO QUATRO CAMINHOS -->
+    <section class="features-section" id="caminhos">
+      <div class="wrap">
+        <div class="section-header center">
+          <span class="eyebrow-center">O QUE ENCONTRA AQUI</span>
+          <h2 class="section-title">Quatro caminhos, um só destino</h2>
+        </div>
+
+        <div class="features-grid-horizontal">
+          <div class="feature-card">
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3bb1a2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </div>
+            <h3>Biblioteca</h3>
+            <p>Artigos, guias e materiais imprimíveis revistos por profissionais, organizados por idade e etapa de desenvolvimento.</p>
+            <a href="#biblioteca" class="card-link">Explorar biblioteca <span class="arrow">→</span></a>
+          </div>
+
+          <div class="feature-card">
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3bb1a2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <h3>Especialistas</h3>
+            <p>Terapeutas, psicólogos e educadores verificados. Marque uma primeira conversa sem compromisso.</p>
+            <a href="#especialistas" class="card-link">Ver especialistas <span class="arrow">→</span></a>
+          </div>
+
+          <div class="feature-card">
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3bb1a2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v3m0 12v3M5 12H2m20 0h-3m-2.5-6.5L14.4 7.6m-4.8 8.8l-2.1 2.1m0-13l2.1 2.1m8.8 8.8l2.1 2.1"></path>
+              </svg>
+            </div>
+            <h3>Assistente</h3>
+            <p>Tire dúvidas do dia a dia e receba sugestões práticas, adaptadas ao perfil da sua criança.</p>
+            <a href="#assistente" class="card-link">Falar com o assistente <span class="arrow">→</span></a>
+          </div>
+
+          <div class="feature-card">
+            <div class="card-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3bb1a2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M9 21v-2a4 4 0 0 1 3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <h3>Comunidade de famílias</h3>
+            <p>Um espaço moderado para partilhar experiências, celebrar conquistas e pedir conselhos.</p>
+            <a href="#comunidade" class="card-link">Conhecer a comunidade <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SECÇÃO COMO FUNCIONA -->
+    <section class="how-it-works-section" id="como-funciona">
+      <div class="wrap">
+        <div class="section-header center">
+          <span class="eyebrow-center">O CAMINHO</span>
+          <h2 class="section-title">Como funciona o EntreMundos</h2>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <span class="step-num">01</span>
+            <h3>Crie o perfil da criança</h3>
+            <p>Idade, interesses e desafios atuais — leva menos de três minutos.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">02</span>
+            <h3>Receba um plano inicial</h3>
+            <p>Recursos e recomendações organizados de acordo com o perfil criado.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">03</span>
+            <h3>Conecte-se com especialistas</h3>
+            <p>Marque conversas com profissionais que correspondem às necessidades identificadas.</p>
+          </div>
+          <div class="step-card">
+            <span class="step-num">04</span>
+            <h3>Acompanhe o progresso</h3>
+            <p>Registe conquistas e ajuste o plano à medida que a criança evolui.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. SECÇÃO BIBLIOTECA (RECURSOS EM DESTAQUE) -->
+    <section class="resources-section" id="biblioteca">
+      <div class="wrap full-width-wrap">
+        <div class="resources-header">
+          <div>
+            <span class="eyebrow-left">BIBLIOTECA</span>
+            <h2 class="section-title">Recursos em destaque</h2>
+          </div>
+          <a href="#todos-recursos" class="link-see-all">Ver todos os recursos →</a>
+        </div>
+
+        <div class="resources-grid">
+          <!-- Cartão 1: Rotinas -->
+          <article class="resource-card">
+            <div class="card-media">
+              <img src="images/rotinas.png" alt="Guia de rotinas visuais" class="resource-img" />
+            </div>
+            <div class="card-content">
+              <span class="card-category">ROTINAS</span>
+              <h3 class="card-title">Como construir uma rotina visual em casa</h3>
+              <p class="card-text">Um guia passo a passo para criar quadros de rotina simples e eficazes.</p>
+            </div>
+          </article>
+
+          <!-- Cartão 2: Sensorial -->
+          <article class="resource-card">
+            <div class="card-media">
+              <img src="images/sensorias.png" alt="Atividades e jogos sensoriais" class="resource-img" />
+            </div>
+            <div class="card-content">
+              <span class="card-category">SENSORIAL</span>
+              <h3 class="card-title">Cinco jogos sensoriais para tardes chuvosas</h3>
+              <p class="card-text">Atividades de baixo custo para regular estímulos em dias mais difíceis.</p>
+            </div>
+          </article>
+
+          <!-- Cartão 3: Escola -->
+          <article class="resource-card">
+            <div class="card-media">
+              <img src="images/escola.png" alt="Guia de reunião com a escola" class="resource-img" />
+            </div>
+            <div class="card-content">
+              <span class="card-category">ESCOLA</span>
+              <h3 class="card-title">Falar com a escola: um guia para a primeira reunião</h3>
+              <p class="card-text">Perguntas certas e materiais para partilhar com professores e apoios educativos.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. SECÇÃO ESPECIALISTAS -->
+    <section class="specialists-section" id="especialistas">
+      <div class="wrap full-width-wrap">
+        <div class="section-header-center">
+          <span class="eyebrow-center">A NOSSA REDE</span>
+          <h2 class="section-title">Especialistas na plataforma</h2>
+        </div>
+        <div class="expansion-box">
+          <h3 class="expansion-title">Rede em expansão</h3>
+          <p class="expansion-text">
+            Estamos a ligar os primeiros especialistas à plataforma. Se é um profissional da área, junte-se a nós!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. SECÇÃO COMPROMISSO -->
+    <section class="commitment-section" id="sobre">
+      <div class="wrap full-width-wrap">
+        <div class="section-header-center">
+          <span class="eyebrow-center">O NOSSO COMPROMISSO</span>
+          <h2 class="section-title">Um espaço pensado para apoiar a sua família</h2>
+        </div>
+        <div class="commitment-grid">
+          <article class="commitment-card">
+            <p class="commitment-text">
+              Criamos um ambiente seguro para que pais e cuidadores não precisem de passar por essa jornada sem orientação e informação de qualidade.
+            </p>
+            <span class="commitment-tag">— Missão EntreMundos</span>
+          </article>
+          <article class="commitment-card">
+            <p class="commitment-text">
+              A biblioteca e o assistente foram desenhados para ajudar na organização de rotinas e na preparação para reuniões com a escola.
+            </p>
+            <span class="commitment-tag">— Recursos Iniciais</span>
+          </article>
+          <article class="commitment-card">
+            <p class="commitment-text">
+              Estamos a construir uma rede com profissionais qualificados para que o atendimento especializado esteja cada vez mais próximo.
+            </p>
+            <span class="commitment-tag">— Em Expansão</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. SECÇÃO FINAL (CTA) -->
+    <section class="cta-section">
+      <div class="wrap full-width-wrap">
+        <div class="cta-card">
+          <h2 class="cta-title">Comece hoje a construir o caminho da sua família.</h2>
+          <p class="cta-description">Criar uma conta é gratuito e leva menos de três minutos.</p>
+          <a href="1cadastro.html" class="btn-cta">Criar conta gratuita</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- RODAPÉ DA PÁGINA (FOOTER) -->
+    <footer class="site-footer">
+      <div class="wrap full-width-wrap">
+        <div class="footer-grid">
+          <div class="footer-col footer-brand">
+            <h3 class="footer-brand-title">
+              <span class="brand-entre">Entre</span><span class="brand-mundos">Mundos</span>
+            </h3>
+            <p class="footer-description">
+              Uma plataforma que liga famílias, especialistas e recursos num só lugar.
+            </p>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">PLATAFORMA</h4>
+            <ul class="footer-links">
+              <li><a href="#biblioteca">Biblioteca</a></li>
+              <li><a href="#recursos">Recursos</a></li>
+              <li><a href="#especialistas">Especialistas</a></li>
+              <li><a href="#como-funciona">Como funciona</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">EMPRESA</h4>
+            <ul class="footer-links">
+              <li><a href="#sobre">Sobre nós</a></li>
+              <li><a href="#carreiras">Carreiras</a></li>
+              <li><a href="#contacto">Contacto</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">LEGAL</h4>
+            <ul class="footer-links">
+              <li><a href="#termos">Termos de uso</a></li>
+              <li><a href="#privacidade">Privacidade</a></li>
+              <li><a href="#cookies">Cookies</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col footer-newsletter">
+            <h4 class="footer-heading">RECEBA NOVIDADES</h4>
+            <p class="newsletter-text">Um resumo mensal com novos recursos e especialistas.</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault();">
+              <input type="email" placeholder="O seu e-mail" required class="newsletter-input" />
+              <button type="submit" class="newsletter-btn">Subscrever</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p><a href="/login.html" class="admin-link-discreto">©</a> 2026 EntreMundos. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Script JavaScript Externo -->
+  <script src="javascripts/index.js"></script>
+</body>
+</html>

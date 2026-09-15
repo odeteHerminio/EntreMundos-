@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo dos Sons dos Animais</title>
+  <link rel="stylesheet" href="animal.css">
+</head>
+<body>
+
+  <div class="game-container">
+    <h1 class="main-title">Toca no Animal para Ouvir!</h1>
+
+    <div class="animals-grid">
+      <button class="animal-card" onclick="jogarSom('dog', 'CÃO')">
+        <img src="assets/dog.jpg" alt="Cão">
+      </button>
+
+      <button class="animal-card" onclick="jogarSom('cat', 'GATO')">
+        <img src="assets/cat.jpg" alt="Gato">
+      </button>
+
+      <button class="animal-card" onclick="jogarSom('tiger', 'TIGRE')">
+        <img src="assets/tiger.jpg" alt="Tigre">
+      </button>
+
+      <button class="animal-card" onclick="jogarSom('lion', 'LEÃO')">
+        <img src="assets/lion.jpeg" alt="Leão">
+      </button>
+
+      <button class="animal-card" onclick="jogarSom('elephant', 'ELEFANTE')">
+        <img src="assets/elephant.jpg" alt="Elefante">
+      </button>
+
+      <button class="animal-card" onclick="jogarSom('pig', 'PORCO')">
+        <img src="assets/pig.jpg" alt="Porco">
+      </button>
+
+      <button class="animal-card" onclick="jogarSom('hyena', 'HIENA')">
+        <img src="assets/hyena.jpg" alt="Hiena">
+      </button>
+
+      <button class="animal-card" onclick="jogarSom('snake', 'COBRA')">
+        <img src="assets/snake.jpg" alt="Cobra">
+      </button>
+    </div>
+
+    <!-- ÁREA ONDE O NOME APARECE BEM GRANDE DEPOIS DA PAUSA -->
+    <div id="animal-name" class="name-display"></div>
+  </div>
+
+  <script src="Scripr1.js"></script>
+</body>
+</html>

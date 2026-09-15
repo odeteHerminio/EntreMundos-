@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro da Família — EntreMundos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="stylesheets/global.css">
+  <link rel="stylesheet" href="stylesheets/castro.css">
+</head>
+<body class="theme-coral">
+
+  <div class="cadastro-topbar">
+    <a href="home.html" class="cadastro-logo">Entre<em>Mundos</em></a>
+    <a href="cadastro.html" class="login-link">← Escolher outro tipo de conta</a>
+  </div>
+
+  <div class="simple-form-shell">
+
+    <!-- BARRA DE PROGRESSO -->
+    <div class="progress-container">
+      <div class="progress-bar">
+        <div class="progress-line" id="progressLine"></div>
+        <div class="progress-step active" data-step="1"><span>1</span></div>
+        <div class="progress-step" data-step="2"><span>2</span></div>
+        <div class="progress-step" data-step="3"><span>3</span></div>
+      </div>
+      <div class="progress-labels">
+        <span class="label-step active" id="lblStep1">Conta</span>
+        <span class="label-step" id="lblStep2">Responsável</span>
+        <span class="label-step" id="lblStep3">Localização & Termos</span>
+      </div>
+    </div>
+
+    <!-- FORMULÁRIO WIZARD -->
+    <div id="formPanel">
+      <p class="page-eyebrow" id="stepEyebrow">Passo 1 de 3</p>
+      <h1 id="stepTitle">Criar a conta da sua família</h1>
+      
+      <form id="familiaForm" novalidate>
+
+        <!-- ETAPA 1: DADOS DA CONTA -->
+        <div class="wizard-step active" id="step1">
+          <div class="form-section">
+            <h2>Dados de Acesso</h2>
+            <p class="section-desc">Insira as credenciais básicas para aceder à plataforma.</p>
+            
+            <!-- Foto de Perfil (Opcional) -->
+            <div class="field photo-upload-field">
+              <label>Fotografia de perfil (Opcional)</label>
+              <div class="photo-upload-container">
+                <div class="photo-preview" id="avatarPreview">
+                  <span>👤</span>
+                </div>
+                <div class="photo-upload-btn-wrapper">
+                  <button type="button" class="btn-secondary-sm" id="btnSelectFoto">Adicionar fotografia</button>
+                  <input type="file" id="famFoto" accept="image/*" style="display: none;">
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="famNome">Nome completo *</label>
+              <input type="text" id="famNome" required placeholder="Ex: Maria Estêvão">
+              <span class="error-message" id="errNome"></span>
+            </div>
+            
+            <div class="field">
+              <label for="famEmail">Email *</label>
+              <input type="email" id="famEmail" required placeholder="exemplo@email.com">
+              <span class="error-message" id="errEmail"></span>
+            </div>
+
+            <!-- Telefone com Prefixo -->
+            <div class="field">
+              <label for="famTelefone">Telefone *</label>
+              <div class="phone-input-group">
+                <select id="phonePrefix" class="phone-prefix-select">
+                  <option value="+258">🇲🇿 +258</option>
+                  <option value="+351">🇵🇹 +351</option>
+                  <option value="+55">🇧🇷 +55</option>
+                  <option value="+244">🇦🇴 +244</option>
+                </select>
+                <input type="tel" id="famTelefone" required placeholder="86 123 4567">
+              </div>
+              <span class="error-message" id="errTelefone"></span>
+            </div>
+
+            <!-- Palavra-passe -->
+            <div class="field-row">
+              <div class="field">
+                <label for="famSenha">Palavra-passe *</label>
+                <div class="password-wrapper">
+                  <input type="password" id="famSenha" required placeholder="No mínimo 8 caracteres">
+                  <button type="button" class="toggle-password" id="btnToggleSenha1">👁</button>
+                </div>
+                <div class="strength-meter">
+                  <div class="strength-bar" id="strengthBar"></div>
+                </div>
+                <span class="strength-text" id="strengthText">Força: -</span>
+                <span class="error-message" id="errSenha"></span>
+              </div>
+              
+              <div class="field">
+                <label for="famSenha2">Confirmar palavra-passe *</label>
+                <div class="password-wrapper">
+                  <input type="password" id="famSenha2" required placeholder="Repita a palavra-passe">
+                  <button type="button" class="toggle-password" id="btnToggleSenha2">👁</button>
+                </div>
+                <span class="error-message" id="errSenha2"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-submit-row">
+            <div></div>
+            <button type="button" class="btn btn-primary" id="btnNext1">Continuar →</button>
+          </div>
+        </div>
+
+        <!-- ETAPA 2: DADOS DO RESPONSÁVEL -->
+        <div class="wizard-step" id="step2" style="display: none;">
+          <div class="form-section">
+            <h2>Quem é o responsável?</h2>
+            <p class="section-desc">Selecione o seu grau de parentesco ou relação com a criança.</p>
+            
+            <div class="radio-grid">
+              <label class="option-pill"><input type="radio" name="relacao" value="Mãe" required> Mãe</label>
+              <label class="option-pill"><input type="radio" name="relacao" value="Pai"> Pai</label>
+              <label class="option-pill"><input type="radio" name="relacao" value="Tutor"> Tutor / Cuidador</label>
+              <label class="option-pill"><input type="radio" name="relacao" value="Avó"> Avó</label>
+              <label class="option-pill"><input type="radio" name="relacao" value="Avô"> Avô</label>
+              <label class="option-pill"><input type="radio" name="relacao" value="Tia"> Tia</label>
+              <label class="option-pill"><input type="radio" name="relacao" value="Tio"> Tio</label>
+              <label class="option-pill"><input type="radio" name="relacao" value="Irmã"> Irmã</label>
+              <label class="option-pill"><input type="radio" name="relacao" value="Irmão"> Irmão</label>
+              <label class="option-pill"><input type="radio" name="relacao" value="Outro"> Outro familiar</label>
+            </div>
+            <span class="error-message" id="errRelacao"></span>
+          </div>
+
+          <div class="form-section">
+            <h2>Fluxo Personalizado</h2>
+            <p class="section-desc">Tem uma criança que pretende acompanhar connosco neste momento?</p>
+            <div class="radio-grid">
+              <label class="option-pill"><input type="radio" name="temCrianca" value="Sim" checked> Sim, desejo cadastrar a criança agora</label>
+              <label class="option-pill"><input type="radio" name="temCrianca" value="Não"> Não, pretendo apenas explorar a plataforma primeiro</label>
+            </div>
+          </div>
+
+          <div class="form-submit-row dual-buttons">
+            <button type="button" class="btn btn-secondary" id="btnPrev2">← Voltar</button>
+            <button type="button" class="btn btn-primary" id="btnNext2">Continuar →</button>
+          </div>
+        </div>
+
+        <!-- ETAPA 3: LOCALIZAÇÃO, PREFERÊNCIAS E TERMOS -->
+        <div class="wizard-step" id="step3" style="display: none;">
+          <div class="form-section">
+            <h2>Localização</h2>
+            <p class="section-desc">Para podermos sugerir os especialistas mais próximos de si.</p>
+            
+            <div class="field-row">
+              <div class="field">
+                <label for="famPais">País *</label>
+                <select id="famPais" required>
+                  <option value="">Selecione</option>
+                  <option value="Moçambique">Moçambique</option>
+                  <option value="Portugal">Portugal</option>
+                  <option value="Brasil">Brasil</option>
+                  <option value="Angola">Angola</option>
+                  <option value="Outro">Outro</option>
+                </select>
+                <span class="error-message" id="errPais"></span>
+              </div>
+              
+              <div class="field">
+                <label for="famProvincia">Província *</label>
+                <select id="famProvincia" required>
+                  <option value="">Selecione primeiro o país</option>
+                </select>
+                <span class="error-message" id="errProvincia"></span>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field" id="cidadeFieldContainer">
+                <label for="famCidade">Cidade / Distrito *</label>
+                <select id="famCidade" required>
+                  <option value="">Selecione primeiro a província</option>
+                </select>
+                <span class="error-message" id="errCidade"></span>
+              </div>
+              <div class="field">
+                <label for="famBairro">Bairro (opcional)</label>
+                <input type="text" id="famBairro" placeholder="Ex: Cariacó">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h2>Preferências & Notificações</h2>
+            <div class="field">
+              <label>Idioma do painel</label>
+              <div class="radio-grid">
+                <label class="option-pill"><input type="radio" name="idioma" value="Português" checked> Português</label>
+                <label class="option-pill"><input type="radio" name="idioma" value="Inglês"> Inglês</label>
+              </div>
+            </div>
+            <div class="field">
+              <label>Desejo receber avisos importantes por:</label>
+              <div class="check-grid">
+                <label class="option-pill"><input type="checkbox" name="notif" value="Email" checked> Email</label>
+                <label class="option-pill"><input type="checkbox" name="notif" value="WhatsApp" checked> WhatsApp</label>
+                <label class="option-pill"><input type="checkbox" name="notif" value="SMS"> SMS</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h2>Termos e Consentimento</h2>
+            <p class="section-desc">Por favor, confirme que leu e aceita as diretrizes de segurança da rede.</p>
+            <div class="consent-column">
+              <div class="consent-row">
+                <input type="checkbox" id="famTermos" required>
+                <label for="famTermos">Aceito os <a href="#" target="_blank">Termos de Utilização</a> *</label>
+              </div>
+              <div class="consent-row">
+                <input type="checkbox" id="famPrivacidade" required>
+                <label for="famPrivacidade">Aceito a <a href="#" target="_blank">Política de Privacidade</a> *</label>
+              </div>
+              <div class="consent-row">
+                <input type="checkbox" id="famDadosCrianca" required>
+                <label for="famDadosCrianca">Autorizo o tratamento dos dados da criança para fins de suporte personalizado *</label>
+              </div>
+            </div>
+            <span class="error-message" id="errTermos"></span>
+          </div>
+
+          <div class="form-submit-row dual-buttons">
+            <button type="button" class="btn btn-secondary" id="btnPrev3">← Voltar</button>
+            <button type="submit" class="btn btn-primary" id="btnFinalSubmit">Criar Conta e Continuar →</button>
+          </div>
+        </div>
+
+      </form>
+      
+      <div class="login-prompt">
+        <p>Já possui uma conta? <a href="home.html#entrar">Entrar</a></p>
+      </div>
+    </div>
+
+    <!-- PAINEL DE SUCESSO -->
+    <div class="success-panel" id="successPanel" style="display: none;">
+      <div class="center-screen">
+        <div class="icon-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h2>A sua conta foi criada com sucesso!</h2>
+        <p class="welcome-text">Seja muito bem-vindo ao <strong>EntreMundos</strong>. Ficamos felizes por se juntar à nossa comunidade de cuidado e partilha.</p>
+        
+        <div id="proximoPassoCard" class="proximo-passo-card">
+          <h3 id="successCardTitle">Próxima Etapa: Conhecer a criança</h3>
+          <p id="successCardText">Preencher o perfil ajudará a estruturar rotinas personalizadas, recomendar atividades lúdicas ideais e orientar de forma correta a sua ligação aos nossos especialistas.</p>
+          <a class="btn btn-primary" href="forcrianca.html" id="btnSuccessAction">Começar Cadastro da Criança →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Ficheiro JavaScript Externo -->
+  <script src="javascripts/familia.js"></script>
+</body>
+</html>

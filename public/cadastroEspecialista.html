@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Especialista — EntreMundos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght=0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="stylesheets/home.css">
+    <style>
+        .step { display: none; }
+        .step.active { display: block; }
+        .hidden-flow { display: none !important; }
+    </style>
+</head>
+<body class="theme-teal bg-stone-50 text-stone-800 font-['Work_Sans']">
+
+<div class="cadastro-topbar flex justify-between items-center p-4 bg-white border-b border-stone-200">
+    <a href="home.html" class="cadastro-logo text-2xl font-bold text-teal-600 font-['Fraunces']">Entre<em class="text-stone-600">Mundos</em></a>
+    <a href="cadastro.html" class="login-link text-stone-600 hover:text-teal-600 text-sm">← Escolher tipo de conta</a>
+</div>
+
+<div class="simple-form-shell max-w-2xl mx-auto my-8 p-6 bg-white rounded-xl shadow-md">
+
+    <!-- FORMULÁRIO -->
+    <div id="formPanel">
+        <p class="page-eyebrow text-xs uppercase tracking-wider text-teal-600 font-semibold mb-1">Cadastro profissional</p>
+        <h1 class="text-3xl font-bold font-['Fraunces'] mb-2">Junte-se à rede de especialistas</h1>
+        <p class="text-stone-600 mb-6">Preencha os seus dados profissionais. A sua formação e documentos serão revistos antes da ativação do perfil público.</p>
+
+        <div class="wizard-progress h-2 bg-stone-100 rounded-full mb-8" id="progressBar">
+            <div id="progressFill" class="h-full bg-teal-600 rounded-full transition-all duration-300" style="width: 12.5%;"></div>
+        </div>
+
+        <form id="especialistaForm" novalidate class="space-y-6">
+
+            <!-- PASSO 1: DADOS PESSOAIS -->
+            <div class="step active" data-step="1">
+                <h3 class="text-lg font-semibold mb-4 text-stone-700">Passo 1: Informações Pessoais</h3>
+                <div class="field photo-upload flex items-center space-x-4 mb-4">
+                    <span class="photo-preview w-16 h-16 rounded-full bg-stone-100 flex items-center justify-center text-2xl" id="specFotoPreview">📷</span>
+                    <label class="upload-btn cursor-pointer bg-stone-100 border border-stone-300 px-4 py-2 rounded text-sm hover:bg-stone-200" for="specFoto">Adicionar fotografia</label>
+                    <input type="file" id="specFoto" name="foto" accept="image/*" class="hidden">
+                </div>
+                <div class="field mb-4">
+                    <label class="block text-sm font-medium mb-1" for="specNome">Nome completo *</label>
+                    <input type="text" id="specNome" name="nome" class="w-full p-2 border border-stone-300 rounded" required>
+                </div>
+                <div class="field mb-4">
+                    <label class="block text-sm font-medium mb-1" for="specEmail">Email profissional *</label>
+                    <input type="email" id="specEmail" name="email" class="w-full p-2 border border-stone-300 rounded" required>
+                </div>
+                <div class="field">
+                    <label class="block text-sm font-medium mb-1" for="specTelefone">Contacto Telefónico *</label>
+                    <div class="flex space-x-2">
+                        <select id="specIndicativo" name="indicativo" class="border border-stone-300 p-2 rounded">
+                            <option value="+258">🇲🇿 +258</option>
+                            <option value="+351">🇵🇹 +351</option>
+                            <option value="+244">🇦🇴 +244</option>
+                        </select>
+                        <input type="tel" id="specTelefone" name="telefone" class="w-full p-2 border border-stone-300 rounded" required placeholder="86 000 0000">
+                    </div>
+                </div>
+            </div>
+
+            <!-- PASSO 2: ENDEREÇO DE ATENDIMENTO -->
+            <div class="step" data-step="2">
+                <h3 class="text-lg font-semibold mb-4 text-stone-700">Passo 2: Localização de Atendimento</h3>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="field">
+                        <label class="block text-sm font-medium mb-1" for="specPais">País *</label>
+                        <select id="specPais" name="pais" class="w-full p-2 border border-stone-300 rounded" required>
+                            <option value="Moçambique">Moçambique</option>
+                            <option value="Portugal">Portugal</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label class="block text-sm font-medium mb-1" for="specProvincia">Província *</label>
+                        <input type="text" id="specProvincia" name="provincia" class="w-full p-2 border border-stone-300 rounded" value="Cabo Delgado" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="field">
+                        <label class="block text-sm font-medium mb-1" for="specCidade">Cidade *</label>
+                        <input type="text" id="specCidade" name="cidade" class="w-full p-2 border border-stone-300 rounded" value="Pemba" required>
+                    </div>
+                    <div class="field">
+                        <label class="block text-sm font-medium mb-1" for="specConsultorio">Endereço do consultório (opcional)</label>
+                        <input type="text" id="specConsultorio" name="consultorio" class="w-full p-2 border border-stone-300 rounded" placeholder="Bairro / Rua">
+                    </div>
+                </div>
+            </div>
+
+            <!-- PASSO 3: INFORMAÇÃO E REGISTO PROFISSIONAL -->
+            <div class="step" data-step="3">
+                <h3 class="text-lg font-semibold mb-4 text-stone-700">Passo 3: Credenciais de Saúde / Educação</h3>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="field">
+                        <label class="block text-sm font-medium mb-1" for="specProfissao">Profissão *</label>
+                        <input type="text" id="specProfissao" name="profissao" class="w-full p-2 border border-stone-300 rounded" placeholder="Ex: Terapeuta da Fala, Psicólogo" required>
+                    </div>
+                    <div class="field">
+                        <label class="block text-sm font-medium mb-1" for="specLicenca">Número de Registo Profissional ou Ordem *</label>
+                        <input type="text" id="specLicenca" name="licenca" class="w-full p-2 border border-stone-300 rounded" placeholder="Ex: Registo Médico Nº XXXXX" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="field">
+                        <label class="block text-sm font-medium mb-1" for="specInstituicao">Instituição de formação académica *</label>
+                        <input type="text" id="specInstituicao" name="instituicao" class="w-full p-2 border border-stone-300 rounded" required>
+                    </div>
+                    <div class="field">
+                        <label class="block text-sm font-medium mb-1" for="specAno">Ano de conclusão *</label>
+                        <input type="number" id="specAno" name="anoConclusao" class="w-full p-2 border border-stone-300 rounded" min="1960" max="2026" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PASSO 4: IDIOMAS E ESPECIALIZAÇÃO -->
+            <div class="step" data-step="4">
+                <h3 class="text-lg font-semibold mb-4 text-stone-700">Passo 4: Áreas de Especialização & Idiomas</h3>
+                <div class="field mb-4">
+                    <label class="block text-sm font-medium mb-2 text-stone-700">Foco / Áreas de Atuação Especializada:</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="focoEspecialidade" value="Autismo"> <span>Autismo (TEA)</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="focoEspecialidade" value="TDAH"> <span>TDAH</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="focoEspecialidade" value="Síndrome de Down"> <span>Síndrome de Down</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="focoEspecialidade" value="Atraso Desenvolvimento"> <span>Atraso Global do Desenvolvimento</span></label>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="block text-sm font-medium mb-2 text-stone-700">Idiomas em que presta atendimento:</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <label class="flex items-center space-x-1 border p-2 rounded text-xs cursor-pointer hover:bg-stone-50"><input type="checkbox" name="idiomas" value="Português" checked> <span>Português</span></label>
+                        <label class="flex items-center space-x-1 border p-2 rounded text-xs cursor-pointer hover:bg-stone-50"><input type="checkbox" name="idiomas" value="Macua"> <span>Macua</span></label>
+                        <label class="flex items-center space-x-1 border p-2 rounded text-xs cursor-pointer hover:bg-stone-50"><input type="checkbox" name="idiomas" value="Makonde"> <span>Makonde</span></label>
+                        <label class="flex items-center space-x-1 border p-2 rounded text-xs cursor-pointer hover:bg-stone-50"><input type="checkbox" name="idiomas" value="Kimwani"> <span>Kimwani</span></label>
+                        <label class="flex items-center space-x-1 border p-2 rounded text-xs cursor-pointer hover:bg-stone-50"><input type="checkbox" name="idiomas" value="Inglês"> <span>Inglês</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PASSO 5: VALORES, MODALIDADE E EXPERIÊNCIA -->
+            <div class="step" data-step="5">
+                <h3 class="text-lg font-semibold mb-4 text-stone-700">Passo 5: Formatos & Preço de Consulta</h3>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div class="field">
+                        <label class="block text-sm font-medium mb-1" for="specAnos">Anos de experiência clínica *</label>
+                        <input type="number" id="specAnos" name="anosExperiencia" class="w-full p-2 border border-stone-300 rounded" min="0" required>
+                    </div>
+                    <div class="field">
+                        <label class="block text-sm font-medium mb-1" for="specPreco">Valor Médio por Consulta *</label>
+                        <select id="specPreco" name="precoConsulta" class="w-full p-2 border border-stone-300 rounded" required>
+                            <option value="Gratuito / Apoio Social">Gratuito / Parceria de Apoio Social</option>
+                            <option value="Até 1.000 MT">Até 1.000 MT</option>
+                            <option value="1.000 MT - 2.500 MT">1.000 MT a 2.500 MT</option>
+                            <option value="Mais de 2.500 MT">Mais de 2.500 MT</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="block text-sm font-medium mb-2">Modalidade de Atendimento disponibilizada:</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="modalidade" value="Presencial"> <span>Presencial</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="modalidade" value="Online"> <span>Online</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="modalidade" value="Domicílio"> <span>Domicílio</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PASSO 6: IDADES ATENDIDAS E AGENDA -->
+            <div class="step" data-step="6">
+                <h3 class="text-lg font-semibold mb-4 text-stone-700">Passo 6: Idades Atendidas & Horário de Agenda</h3>
+                <div class="field mb-4">
+                    <label class="block text-sm font-medium mb-2 text-stone-700">Idades que atende:</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="idades" value="Bebés (0-3 anos)"> <span>Bebés (0-3 anos)</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="idades" value="Crianças Pequenas (4-6 anos)"> <span>Crianças Pequenas (4-6 anos)</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="idades" value="Crianças (7-12 anos)"> <span>Crianças (7-12 anos)</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="idades" value="Adolescentes"> <span>Adolescentes</span></label>
+                    </div>
+                </div>
+                <div class="field mb-2">
+                    <label class="block text-sm font-medium mb-2 text-stone-700">Dias da semana com disponibilidade na agenda:</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="diasAgenda" value="Segunda"> <span>Segunda</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="diasAgenda" value="Terça"> <span>Terça</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="diasAgenda" value="Quarta"> <span>Quarta</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="diasAgenda" value="Quinta"> <span>Quinta</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="diasAgenda" value="Sexta"> <span>Sexta</span></label>
+                        <label class="flex items-center space-x-2 border p-2 rounded text-sm cursor-pointer hover:bg-stone-50"><input type="checkbox" name="diasAgenda" value="Sábado"> <span>Sábado</span></label>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="block text-sm font-medium mb-2 text-stone-700">Turnos habituais de atendimento:</label>
+                    <div class="flex space-x-4">
+                        <label class="flex items-center space-x-2"><input type="checkbox" name="turno" value="Manhã (08h às 12h)"> <span class="text-sm">Manhã (08h - 12h)</span></label>
+                        <label class="flex items-center space-x-2"><input type="checkbox" name="turno" value="Tarde (14h às 17h)"> <span class="text-sm">Tarde (14h - 17h)</span></label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PASSO 7: BIOGRAFIA PROFISSIONAL -->
+            <div class="step" data-step="7">
+                <h3 class="text-lg font-semibold mb-4 text-stone-700">Passo 7: Apresentação Pública</h3>
+                <div class="field">
+                    <label class="block text-sm font-medium mb-2" for="specBio">Biografia profissional para exibição na rede *</label>
+                    <textarea id="specBio" name="biografia" class="w-full p-2 border border-stone-300 rounded h-32" required placeholder="Ex: Dedico a minha carreira ao acompanhamento multidisciplinar de crianças no espectro autista. Trabalho focado na integração escolar e terapias visuais em Cabo Delgado..."></textarea>
+                    <p class="text-xs text-stone-500 mt-1">Limite recomendado de até 500 caracteres.</p>
+                </div>
+            </div>
+
+            <!-- PASSO 8: UPLOAD DE DOCUMENTOS -->
+            <div class="step" data-step="8">
+                <h3 class="text-lg font-semibold mb-4 text-stone-700">Passo 8: Validação Documental</h3>
+                <p class="text-xs text-stone-500 mb-4">De modo a garantir a total segurança das famílias de Pemba, a equipa do EntreMundos revê manualmente estes documentos antes de aprovar o seu perfil.</p>
+                <div class="field mb-4">
+                    <label class="block text-sm font-medium mb-1" for="docCV">Curriculum Vitae (PDF) *</label>
+                    <input type="file" id="docCV" name="docCV" accept="application/pdf" class="w-full p-1 border rounded" required>
+                </div>
+                <div class="field mb-4">
+                    <label class="block text-sm font-medium mb-1" for="docCert">Certificado Profissional de Habilitações *</label>
+                    <input type="file" id="docCert" name="docCertificacoes" class="w-full p-1 border rounded" required>
+                </div>
+                <div class="field">
+                    <label class="block text-sm font-medium mb-1" for="docID">Documento de Identificação Oficial *</label>
+                    <input type="file" id="docID" name="docIdentificacao" class="w-full p-1 border rounded" required>
+                </div>
+            </div>
+
+            <!-- BOTÕES DE NAVEGAÇÃO -->
+            <div class="wizard-nav flex justify-between pt-6 border-t mt-8">
+                <button type="button" class="btn btn-ghost px-4 py-2 text-stone-500 border border-transparent rounded hover:bg-stone-100" id="btnBack">Voltar</button>
+                <button type="button" class="btn btn-primary bg-teal-600 hover:bg-teal-700 text-white px-6 py-2 rounded font-medium" id="btnNext">Continuar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- CONFIRMAÇÃO -->
+    <div class="success-panel hidden-flow text-center py-12" id="successPanel">
+        <div class="center-screen">
+            <div class="icon-badge w-16 h-16 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3 m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <h2 class="text-3xl font-bold font-['Fraunces'] text-stone-800 mb-2">Pedido de registo enviado!</h2>
+            <p class="text-stone-600 mb-8 max-w-md mx-auto">A nossa equipa administrativa local em Cabo Delgado irá validar os seus documentos profissionais e de identificação em até 48 horas. Entraremos em contacto por email assim que o seu perfil for publicado.</p>
+            <a class="..." href="Index.html">Voltar à Página Inicial</a>
+        
+        </div>
+    </div>
+
+</div>
+
+<!-- Ficheiro JavaScript Externo -->
+<script src="javascripts/especialista.js"></script>
+</body>
+</html>

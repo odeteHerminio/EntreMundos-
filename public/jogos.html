@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espaço de Jogos — EntreMundos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="stylesheets/global.css">
+
+  <link rel="stylesheet" href="stylesheets/jogos.css">
+
+  <style>
+    /* Estilo para ajustar o jogo dentro do modal */
+    .game-iframe {
+      width: 100%;
+      height: 80vh;
+      border: none;
+      border-radius: 16px;
+      background: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-shell">
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- MENU LATERAL -->
+  <aside class="app-sidebar" id="appSidebar">
+    <a href="home.html" class="sidebar-logo">Entre<em>Mundos</em></a>
+    
+    <nav class="sidebar-nav">
+      
+      <a href="jogos.html" class="active">
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="4"/><path d="M8 12h.01M6 12h.01M17 11h.01M15 12h.01"/></svg>
+        Jogos 🎮
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ÁREA DE JOGOS VISUAL -->
+  <main class="app-main kids-space">
+
+    <!-- JOGO RECOMENDADO -->
+    <section class="featured-game-section">
+      <div class="featured-badge"> Recomendado para Hoje</div>
+      <div class="featured-card" onclick="openGame('Sons animais/index.html')">
+        <div class="game-visual bg-gradient-1">
+          <span class="game-hero-emoji">🐶</span>
+        </div>
+        <div class="game-title-bar">
+          <h2>Sons dos Animais</h2>
+          <span class="play-btn-icon">▶️</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIA DE JOGOS -->
+    <section class="games-gallery">
+      
+      <!-- CARTÃO DOS ANIMAIS -->
+      <div class="kid-game-card" onclick="openGame('Sons animais/index.html')">
+        <div class="game-visual bg-gradient-2">
+          <span class="game-hero-emoji">🐶</span>
+        </div>
+        <div class="game-title-bar">
+          <h3>Sons dos Animais</h3>
+          <span class="play-btn-icon">▶️</span>
+        </div>
+      </div>
+
+      <div class="kid-game-card" onclick="openGame('Cores e Associação')">
+        <div class="game-visual bg-gradient-3">
+          <span class="game-hero-emoji">🎨</span>
+        </div>
+        <div class="game-title-bar">
+          <h3>Mundo das Cores</h3>
+          <span class="play-btn-icon">▶️</span>
+        </div>
+      </div>
+
+      <div class="kid-game-card" onclick="openGame('Formando Sílabas')">
+        <div class="game-visual bg-gradient-4">
+          <span class="game-hero-emoji">🔤</span>
+        </div>
+        <div class="game-title-bar">
+          <h3>Jogo das Letras</h3>
+          <span class="play-btn-icon">▶️</span>
+        </div>
+      </div>
+
+    </section>
+  </main>
+</div>
+
+<!-- TELA DO JOGO EM CURSO (MODAL COM IFRAME) -->
+<div class="game-player-modal" id="gameModal" style="display: none;">
+  <div class="game-player-content" style="width: 90%; max-width: 900px;">
+    <button class="close-game-btn" onclick="closeGame()">✖ Sair do Jogo</button>
+    <div class="game-canvas-area" id="gameContainer">
+      <!-- O jogo será inserido aqui via JavaScript -->
+    </div>
+  </div>
+</div>
+
+<script>
+  function openGame(gameUrl) {
+    const container = document.getElementById('gameContainer');
+    
+    // Se for o caminho para o ficheiro HTML do jogo dos animais
+    if (gameUrl.includes('index.html')) {
+      container.innerHTML = `<iframe src="${gameUrl}" class="game-iframe"></iframe>`;
+    } else {
+      // Para os outros jogos que ainda não têm pasta criada
+      container.innerHTML = `
+        <span class="loading-emoji">🎮</span>
+        <h2>${gameUrl}</h2>
+      `;
+    }
+
+    document.getElementById('gameModal').style.display = 'flex';
+  }
+
+  function closeGame() {
+    document.getElementById('gameModal').style.display = 'none';
+    document.getElementById('gameContainer').innerHTML = ''; // Limpa o jogo e para o áudio ao fechar
+  }
+</script>
+
+<script src="dashboard.js"></script>
+</body>
+</html>
