@@ -1,14 +1,30 @@
 // ==========================================
 // 0. CONTROLO DE ACESSO DIRETO (PROTEÇÃO DA PÁGINA)
 // ==========================================
-(function verificarAcesso() {
-  const adminLogado = localStorage.getItem('adminLogado');
-  if (adminLogado !== 'true') {
+async function verificarAcesso() {
+  try {
+    const res = await fetch('/api/sessao', { cache: 'no-store', credentials: 'same-origin' });
+    if (!res.ok) {
+      window.location.href = '/login.html';
+      return;
+    }
+
+    const data = await res.json();
+    if (!data.autenticado || data.tipo !== 'admin') {
+      window.location.href = '/login.html';
+      return;
+    }
+
+    // autenticado como admin - podemos prosseguir
+    return;
+  } catch (err) {
+    console.error('Erro ao verificar sessão do admin:', err);
     window.location.href = '/login.html';
   }
-})();
+}
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
+  await verificarAcesso();
   // ==========================================
   // 1. NAVEGAÇÃO E SEÇÕES DA PLATAFORMA
   // ==========================================
@@ -113,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // A) Carregar Cartões e Estatísticas Gerais
   async function carregarEstatisticas() {
     try {
-      const res = await fetch('/api/admin/stats');
+      const res = await fetch('/api/admin/stats', { credentials: 'same-origin' });
       if (res.ok) {
         const stats = await res.json();
         
@@ -134,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!tableBody) return;
 
     try {
-      const res = await fetch('/api/especialistas');
+      const res = await fetch('/api/especialistas', { credentials: 'same-origin' });
       if (!res.ok) throw new Error("Erro ao procurar especialistas");
       const lista = await res.json();
 
@@ -186,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!tableBody) return;
 
     try {
-      const res = await fetch('/api/familias');
+      const res = await fetch('/api/familias', { credentials: 'same-origin' });
       if (!res.ok) throw new Error("Erro ao procurar famílias");
       const familias = await res.json();
 
@@ -214,7 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // D) Carregar Logs e Atividade Recente
   async function carregarLogsReais() {
     try {
-      const response = await fetch('/api/logs');
+      const response = await fetch('/api/logs', { credentials: 'same-origin' });
       if (!response.ok) throw new Error('Erro ao procurar logs');
       const logs = await response.json();
 
@@ -268,6 +284,7 @@ document.addEventListener("DOMContentLoaded", function () {
     try {
       const response = await fetch('/api/suporte/responder', {
         method: 'POST',
+        credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ chamado_id: chamadoIdSelecionado, resposta: respostaText })
       });
@@ -286,9 +303,60 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Função global para aprovar/rejeitar especialista
-  window.alterarEstadoEspecialista = function(id, novoEstado) {
-    showToast(`Especialista marcado como ${novoEstado}.`);
-    carregarEspecialistas();
+  window.alterarEstadoEspecialista = async function(id, novoEstado) {
+    try {
+      if (!Number.isInteger(Number(id))) {
+        alert('ID do especialista inválido.');
+        return;
+      }
+
+      if (novoEstado === 'Aprovado') {
+        const resp = await fetch(`/api/admin/especialistas/${id}/aprovar`, {
+          method: 'POST',
+          credentials: 'same-origin'
+        });
+
+        const data = await resp.json().catch(() => ({}));
+
+        if (resp.ok && data.sucesso) {
+          showToast(data.mensagem || 'Especialista aprovado.');
+          carregarEspecialistas();
+          return;
+        }
+
+        alert(data.erro || data.mensagem || 'Erro ao aprovar especialista.');
+        return;
+      }
+
+      if (novoEstado === 'Rejeitado') {
+        const motivo = prompt('Motivo da rejeição (visível no email):', 'Documentação incompleta ou ilegível.');
+
+        if (motivo === null) return; // cancelado
+
+        const resp = await fetch(`/api/admin/especialistas/${id}/rejeitar`, {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ motivo })
+        });
+
+        const data = await resp.json().catch(() => ({}));
+
+        if (resp.ok && data.sucesso) {
+          showToast(data.mensagem || 'Especialista rejeitado.');
+          carregarEspecialistas();
+          return;
+        }
+
+        alert(data.erro || data.mensagem || 'Erro ao rejeitar especialista.');
+        return;
+      }
+
+      console.warn('Estado desconhecido para especialista:', novoEstado);
+    } catch (error) {
+      console.error('Erro ao alterar estado do especialista:', error);
+      alert('Erro ao processar a ação. Veja a consola para detalhes.');
+    }
   };
 
   // Carregar todos os dados da BD ao iniciar

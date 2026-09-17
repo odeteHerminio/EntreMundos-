@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Entrar — Especialista · EntreMundos</title>
+  <link rel="stylesheet" href="stylesheets/global.css">
+  <style>
+    .login-container{max-width:420px;margin:60px auto;padding:24px;border:1px solid #eee;border-radius:8px;background:#fff}
+    .login-container h1{font-size:20px;margin-bottom:12px}
+    .form-row{margin-bottom:12px}
+    label{display:block;font-size:13px;margin-bottom:6px}
+    input[type="email"],input[type="password"]{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px}
+    .btn{display:inline-block;background:#2e7d32;color:#fff;padding:10px 16px;border-radius:6px;border:none;cursor:pointer}
+    .error{color:#c62828;margin-top:10px}
+  </style>
+</head>
+<body>
+
+  <main class="login-container">
+    <h1>Entrar — Área do Especialista</h1>
+
+    <form id="especialistaLoginForm">
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required autocomplete="username">
+      </div>
+
+      <div class="form-row">
+        <label for="senha">Senha</label>
+        <input id="senha" name="senha" type="password" required autocomplete="current-password">
+      </div>
+
+      <div class="form-row">
+        <button class="btn" type="submit">Entrar</button>
+      </div>
+
+      <div id="mensagem" class="error" role="status" aria-live="polite"></div>
+    </form>
+
+    <p style="margin-top:16px;font-size:13px;color:#666">Voltar para a <a href="Index.html">página inicial</a>.</p>
+  </main>
+
+  <script>
+    const form = document.getElementById('especialistaLoginForm');
+    const mensagem = document.getElementById('mensagem');
+
+    form.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      mensagem.textContent = '';
+
+      const email = document.getElementById('email').value.trim();
+      const senha = document.getElementById('senha').value;
+
+      try {
+        const res = await fetch('/api/login-especialista', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, senha }),
+          credentials: 'same-origin'
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data && (data.sucesso === true || data.ok === true || data.success === true)) {
+          // backend sets session cookie; redirecionar para dashboard do especialista
+          window.location.href = 'dasboardEspecialista.html';
+          return;
+        }
+
+        // tentar usar mensagem do backend
+        mensagem.textContent = data && data.erro ? data.erro : 'Credenciais inválidas. Verifique e tente novamente.';
+
+      } catch (err) {
+        console.error(err);
+        mensagem.textContent = 'Erro de rede. Tente novamente mais tarde.';
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -100,11 +100,33 @@
   </div>
 
   <script>
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-      // Guarda o estado de login e redireciona para o painel de admin
-      localStorage.setItem('adminLogado', 'true');
-      window.location.href = 'admin.html';
+
+      const email = document.getElementById('email')?.value || '';
+      const password = document.getElementById('password')?.value || '';
+
+      try {
+        const res = await fetch('/api/login-admin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok && data.sucesso) {
+          // Redireciona para o painel; a sessão é gerida pelo servidor via cookie
+          window.location.href = '/admin';
+          return;
+        }
+
+        // Erro de autenticação
+        alert(data.erro || data.message || 'Credenciais inválidas.');
+      } catch (err) {
+        console.error('Erro no login do administrador:', err);
+        alert('Erro ao comunicar com o servidor. Tente novamente.');
+      }
     });
   </script>
 </body>

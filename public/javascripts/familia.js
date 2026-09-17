@@ -414,7 +414,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (cardText) cardText.textContent = "Pode explorar os nossos conteúdos e adicionar uma criança mais tarde quando desejar.";
                     if (successBtn) {
                         successBtn.textContent = "Ir para o Painel Inicial →";
-                        successBtn.href = "home.html";
+                        successBtn.href = "dasboardFamilia.html";
                     }
                 }
 
@@ -441,7 +441,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (temCrianca === "Sim") {
                 window.location.href = "forcrianca.html";
             } else {
-                window.location.href = "home.html";
+                window.location.href = "dasboardFamilia.html";
             }
         }
     }

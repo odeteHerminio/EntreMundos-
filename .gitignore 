@@ -1,0 +1,26 @@
+# Dependências do Node.js
+node_modules/
+
+# Variáveis de ambiente e informações secretas
+.env
+.env.local
+.env.development
+.env.production
+
+# Ficheiros enviados pelos utilizadores
+public/uploads/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Ficheiros do sistema
+.DS_Store
+Thumbs.db
+
+# Ficheiros temporários
+*.tmp
+*.temp

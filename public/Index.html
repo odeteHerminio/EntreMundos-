@@ -120,6 +120,18 @@
             <button type="button" class="search-tag">Sensorial</button>
             <button type="button" class="search-tag">Primeiros passos</button>
           </div>
+
+          <div class="assistant-inline">
+            <div class="assistant-inline-header">
+              <h3>Assistente IA do EntreMundos</h3>
+              <span class="assistant-status">Resposta em tempo real</span>
+            </div>
+            <form class="assistant-form" id="geminiHomeForm">
+              <input type="text" id="geminiHomeInput" placeholder="Ex.: Como ajudar a criança a lidar com mudanças de rotina?" aria-label="Pergunta para a IA" required />
+              <button type="submit">Perguntar</button>
+            </form>
+            <div class="assistant-output empty" id="geminiHomeOutput">A sua resposta vai aparecer aqui.</div>
+          </div>
         </div>
       </div>
     </section>
@@ -386,5 +398,190 @@
 
   <!-- Script JavaScript Externo -->
   <script src="javascripts/index.js"></script>
+  <script>
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/\"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function formatInlineMarkdown(value) {
+      let text = escapeHtml(value || '');
+      text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      text = text.replace(/__(.+?)__/g, '<strong>$1</strong>');
+      return text;
+    }
+
+    function renderMarkdownToHtml(markdownText) {
+      const text = String(markdownText || '').replace(/\r\n/g, '\n').trim();
+
+      if (!text) return '';
+
+      const lines = text.split('\n');
+      const blocks = [];
+      let i = 0;
+
+      while (i < lines.length) {
+        const current = lines[i];
+
+        if (!current.trim()) {
+          i += 1;
+          continue;
+        }
+
+        if (/^###\s+/.test(current.trim())) {
+          const title = current.trim().replace(/^###\s+/, '');
+          blocks.push(`<h3>${formatInlineMarkdown(title)}</h3>`);
+          i += 1;
+          continue;
+        }
+
+        if (/^##\s+/.test(current.trim())) {
+          const title = current.trim().replace(/^##\s+/, '');
+          blocks.push(`<h2>${formatInlineMarkdown(title)}</h2>`);
+          i += 1;
+          continue;
+        }
+
+        if (/^#\s+/.test(current.trim())) {
+          const title = current.trim().replace(/^#\s+/, '');
+          blocks.push(`<h1>${formatInlineMarkdown(title)}</h1>`);
+          i += 1;
+          continue;
+        }
+
+        if (/^[-*]\s+/.test(current.trim())) {
+          const items = [];
+          while (i < lines.length && /^[-*]\s+/.test((lines[i] || '').trim())) {
+            const item = (lines[i] || '').trim().replace(/^[-*]\s+/, '');
+            items.push(`<li>${formatInlineMarkdown(item)}</li>`);
+            i += 1;
+          }
+          blocks.push(`<ul>${items.join('')}</ul>`);
+          continue;
+        }
+
+        if (/^\d+\.\s+/.test(current.trim())) {
+          const items = [];
+          while (i < lines.length && /^\d+\.\s+/.test((lines[i] || '').trim())) {
+            const item = (lines[i] || '').trim().replace(/^\d+\.\s+/, '');
+            items.push(`<li>${formatInlineMarkdown(item)}</li>`);
+            i += 1;
+          }
+          blocks.push(`<ol>${items.join('')}</ol>`);
+          continue;
+        }
+
+        const paragraphLines = [];
+        while (i < lines.length) {
+          const line = lines[i];
+
+          if (!line.trim()) break;
+          if (/^#{1,3}\s+/.test(line.trim()) || /^[-*]\s+/.test(line.trim()) || /^\d+\.\s+/.test(line.trim())) {
+            break;
+          }
+
+          paragraphLines.push(line.trim());
+          i += 1;
+        }
+
+        if (paragraphLines.length) {
+          blocks.push(`<p>${formatInlineMarkdown(paragraphLines.join(' '))}</p>`);
+        }
+      }
+
+      return blocks.join('');
+    }
+
+    function setAssistantOutput(element, value, isLoading) {
+      if (!element) return;
+
+      if (isLoading) {
+        element.classList.remove('empty');
+        element.textContent = value || 'A preparar uma resposta...';
+        return;
+      }
+
+      element.classList.toggle('empty', !value);
+      element.innerHTML = renderMarkdownToHtml(value || '');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const homeForm = document.getElementById('geminiHomeForm');
+      const homeInput = document.getElementById('geminiHomeInput');
+      const homeOutput = document.getElementById('geminiHomeOutput');
+
+      if (homeForm && homeInput && homeOutput) {
+        homeForm.addEventListener('submit', async function (event) {
+          event.preventDefault();
+          const pergunta = homeInput.value.trim();
+
+          if (!pergunta) return;
+
+          setAssistantOutput(homeOutput, 'A pensar numa resposta útil...', true);
+
+          try {
+            const response = await fetch('/api/ia/perguntar', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ pergunta })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok || !data.sucesso) {
+              const msg = [data.erro, data.detalhe].filter(Boolean).join(' ');
+              throw new Error(msg || 'Erro ao consultar a IA.');
+            }
+
+            setAssistantOutput(homeOutput, data.resposta, false);
+          } catch (error) {
+            homeOutput.classList.remove('empty');
+            homeOutput.textContent = error.message || 'Não foi possível obter uma resposta neste momento.';
+            console.error('Frontend IA - erro:', error.message || error);
+          }
+        });
+      }
+
+      const familiaForm = document.getElementById('geminiFamiliaForm');
+      const familiaInput = document.getElementById('geminiFamiliaInput');
+      const familiaOutput = document.getElementById('geminiFamiliaOutput');
+
+      if (familiaForm && familiaInput && familiaOutput) {
+        familiaForm.addEventListener('submit', async function (event) {
+          event.preventDefault();
+          const pergunta = familiaInput.value.trim();
+
+          if (!pergunta) return;
+
+          setAssistantOutput(familiaOutput, 'A preparar uma resposta prática...', true);
+
+          try {
+            const response = await fetch('/api/ia/perguntar', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ pergunta })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok || !data.sucesso) {
+              const msg = [data.erro, data.detalhe].filter(Boolean).join(' ');
+              throw new Error(msg || 'Erro ao consultar a IA.');
+            }
+
+            setAssistantOutput(familiaOutput, data.resposta, false);
+          } catch (error) {
+            familiaOutput.classList.remove('empty');
+            familiaOutput.textContent = error.message || 'Não foi possível obter uma resposta neste momento.';
+            console.error('Frontend IA - erro:', error.message || error);
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>

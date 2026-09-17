@@ -274,9 +274,15 @@
 
   <!-- CÓDIGO JS PARA O BOTÃO DE LOGOUT -->
   <script>
-    document.getElementById("logoutBtn")?.addEventListener("click", function() {
-      localStorage.removeItem("adminLogado");
-      window.location.href = "/login.html";
+    document.getElementById("logoutBtn")?.addEventListener("click", async function() {
+      try {
+        await fetch('/api/logout', { method: 'POST' });
+      } catch (e) {
+        console.warn('Erro ao chamar /api/logout:', e);
+      }
+
+      // Redireciona para a página de login (servidor já removeu sessão)
+      window.location.href = '/login.html';
     });
   </script>
   <script src="javascripts/admin.js"></script>

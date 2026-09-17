@@ -178,6 +178,77 @@
   font-weight: 600;
 }
 
+.assistant-inline {
+  margin-top: 20px;
+  border: 1px solid rgba(59, 177, 162, 0.18);
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.05);
+}
+
+.assistant-inline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.assistant-inline-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.assistant-status {
+  font-size: 0.75rem;
+  color: var(--teal);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.assistant-form {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.assistant-form input {
+  flex: 1 1 260px;
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.assistant-form button,
+.ai-primary-btn {
+  border: none;
+  border-radius: 12px;
+  background: var(--teal);
+  color: #ffffff;
+  padding: 14px 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.assistant-output {
+  margin-top: 16px;
+  padding: 16px 18px;
+  background: #f3fbf9;
+  border: 1px solid rgba(59, 177, 162, 0.2);
+  border-radius: 12px;
+  color: var(--text);
+  line-height: 1.65;
+  min-height: 84px;
+}
+
+.assistant-output.empty {
+  color: var(--text-soft);
+}
+
 /* ==========================================================
    SECÇÃO QUATRO CAMINHOS
    ========================================================== */
